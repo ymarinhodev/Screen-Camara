@@ -102,11 +102,11 @@ function limpar_imagem_orfa(?int $id): void
         return;
     }
     $st = db()->prepare(
-        'DELETE FROM imagens WHERE id = :id
-           AND NOT EXISTS (SELECT 1 FROM vereadores WHERE foto_id = :id OR logo_id = :id)
-           AND NOT EXISTS (SELECT 1 FROM noticias WHERE imagem_id = :id)'
+        'DELETE FROM imagens WHERE id = :a
+           AND NOT EXISTS (SELECT 1 FROM vereadores WHERE foto_id = :b OR logo_id = :c)
+           AND NOT EXISTS (SELECT 1 FROM noticias WHERE imagem_id = :d)'
     );
-    $st->execute([':id' => $id]);
+    $st->execute([':a' => $id, ':b' => $id, ':c' => $id, ':d' => $id]);
 }
 
 function config_todas(): array
@@ -122,7 +122,7 @@ function config_todas(): array
 
 function vereadores_da_tela(string $tela): array
 {
-    $st = db()->prepare('SELECT * FROM vereadores WHERE tela = :t ORDER BY ordem, id');
+    $st = db()->prepare('SELECT v.*, p.sigla AS partido_sigla, p.logo_url AS partido_logo_url, p.logo_id AS partido_logo_id FROM vereadores v LEFT JOIN partidos p ON p.id=v.partido_id WHERE v.tela = :t ORDER BY v.ordem, v.id');
     $st->execute([':t' => $tela]);
     return $st->fetchAll();
 }

@@ -186,3 +186,5 @@ input:focus, select:focus { border-color: var(--azul); }
   #aviso { animation: entra .18s ease-out; }
   @keyframes entra { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
 }
+
+.galeria-importada{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:12px;max-width:780px}.escolher-foto{padding:3px;border:2px solid #ddd;background:white;border-radius:8px;cursor:pointer}.escolher-foto img{width:100%;height:85px;object-fit:cover}.escolher-foto.selecionada{border-color:#1f65c7;box-shadow:0 0 0 2px #1f65c7}.importacao-noticia{width:100%}

@@ -78,8 +78,8 @@ function tela_vereadores(array $vereadores): void
                                 <p class="nome-vereador"><?= e($v['nome']) ?></p>
                                 <div id="canto-branco"></div>
                                 <div id="canto-azul"></div>
-<?php if ($v['logo_id']): ?>
-                                <img class="partido_vereador" src="<?= e(img_url((int) $v['logo_id'])) ?>" alt="<?= e($v['partido']) ?>">
+<?php if (!empty($v['partido_logo_url']) || !empty($v['partido_logo_id']) || $v['logo_id']): ?>
+                                <img class="partido_vereador" src="<?= e((!empty($v['partido_logo_url']) ? $v['partido_logo_url'] : img_url((int)($v['partido_logo_id'] ?: $v['logo_id'])))) ?>" alt="<?= e($v['partido']) ?>">
 <?php endif; ?>
                                 <p class="gabinete-vereador"><?= e($v['gabinete']) ?></p>
                             </fieldset>

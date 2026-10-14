@@ -14,6 +14,7 @@ try {
     ];
     $noticias = noticias_ativas(false);
     $qrcodes  = qrcodes_ativos(false);
+    $partidos = db()->query('SELECT * FROM partidos ORDER BY sigla')->fetchAll();
     $equipe   = db()->query('SELECT id, nome, email FROM usuarios WHERE ativo ORDER BY nome')->fetchAll();
 } catch (Throwable $ex) {
     error_log('painel: ' . $ex->getMessage());
@@ -35,13 +36,13 @@ function campo_foto(string $nome, string $classe, ?string $url, string $rotulo, 
 <?php
 }
 
-function bloco_vereador(array $v): void
+function bloco_vereador(array $v, array $partidos): void
 {
     ?>
 <form class="cartao item-vereador" data-salvar="vereador_salvar" data-excluir="vereador_excluir" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= (int) $v['id'] ?>">
     <div class="linha-item">
-        <?php campo_foto('foto', 'miniatura-foto', img_url($v['foto_id'] ? (int) $v['foto_id'] : null), 'Trocar foto', 600); ?>
+        <?php campo_foto('foto', 'miniatura-foto', ($v['foto_id'] ? img_url((int)$v['foto_id']) : (!empty($v['foto_url']) ? $v['foto_url'] : '/assets/img/sem-foto.svg')), 'Trocar foto', 600); ?>
         <div class="campos">
             <label class="largo">Nome na TV
                 <input type="text" name="nome" value="<?= e($v['nome']) ?>" maxlength="80" required>
@@ -50,7 +51,12 @@ function bloco_vereador(array $v): void
                 <input type="text" name="gabinete" value="<?= e($v['gabinete']) ?>" maxlength="20" placeholder="GAB 10">
             </label>
             <label>Partido
-                <input type="text" name="partido" value="<?= e($v['partido']) ?>" maxlength="40">
+                <select name="partido_id" class="seletor-partido">
+                    <option value="">Sem partido</option>
+<?php foreach ($partidos as $part): ?>
+                    <option value="<?= (int)$part['id'] ?>"<?= (int)($v['partido_id'] ?? 0)===(int)$part['id'] ? ' selected' : '' ?>><?= e($part['sigla']) ?></option>
+<?php endforeach; ?>
+                </select>
             </label>
             <label>Aparece na
                 <select name="tela">
@@ -64,7 +70,8 @@ function bloco_vereador(array $v): void
             </label>
         </div>
         <div class="miniatura-logo-caixa">
-            <?php campo_foto('logo', 'miniatura-logo', $v['logo_id'] ? img_url((int) $v['logo_id']) : '/assets/img/sem-foto.svg', 'Logo do partido', 300); ?>
+            <img class="miniatura miniatura-logo" src="<?= e(!empty($v['partido_logo_url']) ? $v['partido_logo_url'] : (!empty($v['partido_logo_id']) ? img_url((int)$v['partido_logo_id']) : (!empty($v['logo_id']) ? img_url((int)$v['logo_id']) : '/assets/img/sem-foto.svg'))) ?>" alt="Logo do partido">
+            <small>Logotipo do partido selecionado</small>
         </div>
         <div class="acoes">
             <button type="submit" class="botao">Salvar</button>
@@ -81,7 +88,7 @@ function bloco_noticia(array $n): void
 <form class="cartao item-noticia" data-salvar="noticia_salvar" data-excluir="noticia_excluir" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= (int) $n['id'] ?>">
     <div class="linha-item">
-        <?php campo_foto('imagem', 'miniatura-noticia', img_url($n['imagem_id'] ? (int) $n['imagem_id'] : null, '/assets/img/logo.png'), 'Trocar foto da notícia', 1280); ?>
+        <?php campo_foto('imagem', 'miniatura-noticia', (!empty($n['imagem_url']) ? $n['imagem_url'] : img_url($n['imagem_id'] ? (int) $n['imagem_id'] : null, '/assets/img/logo.png')), 'Trocar foto da notícia', 1280); ?>
         <div class="campos">
             <label class="largo">Título na TV
                 <input type="text" name="titulo" value="<?= e($n['titulo']) ?>" maxlength="220" required>
@@ -89,6 +96,12 @@ function bloco_noticia(array $n): void
             <label class="largo">Link da matéria (opcional)
                 <input type="url" name="link" value="<?= e($n['link']) ?>" maxlength="2000" placeholder="https://">
             </label>
+            <div class="importacao-noticia largo">
+                <button type="button" class="botao botao-claro" data-importar-noticia>Buscar fotos da matéria</button>
+                <input type="hidden" name="imagem_url" value="<?= e($n['imagem_url'] ?? '') ?>">
+                <div class="galeria-importada" aria-live="polite"></div>
+                <small>Escolha uma foto da galeria oficial; upload manual continua disponível.</small>
+            </div>
             <label>Posição
                 <input type="number" name="ordem" value="<?= (int) $n['ordem'] ?>" min="0" step="1">
             </label>
@@ -188,7 +201,7 @@ function bloco_qr(array $q): void
 <?php if (!$vereadores[$chave]): ?>
         <p class="vazio">Nenhum vereador nesta tela.</p>
 <?php endif; ?>
-<?php foreach ($vereadores[$chave] as $v): bloco_vereador($v); endforeach; ?>
+<?php foreach ($vereadores[$chave] as $v): bloco_vereador($v, $partidos); endforeach; ?>
 <?php endforeach; ?>
     </section>
 

@@ -33,7 +33,7 @@ tela_seta(true);
             <div id="owlc0" class="owl-carousel">
 <?php foreach ($noticias as $n): ?>
                 <div class="tv-noticia">
-                    <img src="<?= e(img_url($n['imagem_id'] ? (int) $n['imagem_id'] : null, '/assets/img/logo.png')) ?>" alt="<?= e($n['titulo']) ?>">
+                    <img src="<?= e((!empty($n['imagem_url']) ? $n['imagem_url'] : img_url($n['imagem_id'] ? (int) $n['imagem_id'] : null, '/assets/img/logo.png'))) ?>" alt="<?= e($n['titulo']) ?>">
                     <h2 class="nomargin"><?= e($n['titulo']) ?></h2>
                 </div>
 <?php endforeach; ?>

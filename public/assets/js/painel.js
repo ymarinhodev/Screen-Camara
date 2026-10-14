@@ -105,6 +105,34 @@
     }
   }
 
+  // Galeria oficial: URLs externas, sem upload nem Base64.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-importar-noticia]'), function (botao) {
+    botao.addEventListener('click', function () {
+      var form = botao.closest('form');
+      var link = form.querySelector('[name=link]').value.trim();
+      var fd = new FormData(); fd.set('acao', 'noticia_importar'); fd.set('link', link);
+      ocupado(botao, true, 'Buscando…');
+      enviar(fd).then(function (res) {
+        var galeria = form.querySelector('.galeria-importada'); galeria.textContent = '';
+        var imagens = res.dados.imagens || [];
+        if (!imagens.length) { mostrar('Não encontrei fotos na matéria. Você pode enviar uma manualmente.', true); return; }
+        if (res.dados.titulo && form.querySelector('[name=titulo]').value.trim() === 'Nova notícia') {
+          form.querySelector('[name=titulo]').value = res.dados.titulo;
+        }
+        imagens.forEach(function (url, i) {
+          var b = document.createElement('button'); b.type='button'; b.className='escolher-foto';
+          var img = document.createElement('img'); img.src=url; img.alt='Fotografia '+(i+1); img.loading='lazy';
+          b.appendChild(img); b.addEventListener('click', function () {
+            form.querySelector('[name=imagem_url]').value=url;
+            form.querySelector('.miniatura-noticia').src=url;
+            Array.prototype.forEach.call(galeria.querySelectorAll('button'), function (x) { x.classList.remove('selecionada'); });
+            b.classList.add('selecionada'); mostrar('Foto selecionada. Clique em Salvar para publicar.');
+          }); galeria.appendChild(b);
+        }); mostrar(imagens.length+' foto(s) encontradas.');
+      }).catch(function (e) { mostrar(e.message, true); }).then(function () { ocupado(botao, false); });
+    });
+  });
+
   // salvar
   Array.prototype.forEach.call(document.querySelectorAll('form[data-salvar]'), function (form) {
     form.addEventListener('submit', function (ev) {

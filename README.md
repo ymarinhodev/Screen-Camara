@@ -61,3 +61,7 @@ vercel.json runtime vercel-php + rotas
 - Layout retrato 9:16 para 2160×3840; valide no navegador integrado da TV real.
 - QR Code depende do serviço externo `api.qrserver.com`, tal como o projeto de referência.
 - Não há conexão Neon nem deploy Vercel neste pacote; validar runtime PHP, `pdo_pgsql`, HTTPS, fotos e login no ambiente de produção.
+
+
+## Atualização 2026-10: notícias e partidos
+Antes do deploy execute `sql/migracao-2026-10.sql` no SQL Editor do Neon (preserva registros). Em Notícias, cole o link oficial, clique Buscar fotos da matéria, selecione a fotografia e Salvar. Em Vereadores, selecione o partido. Os logotipos compartilhados podem ser definidos em `partidos.logo_url`; logotipos antigos continuam como fallback. URLs externas dependem de disponibilidade e permissão de exibição pelo site oficial.

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/config/auth.php';
+require_once dirname(__DIR__) . '/config/importar_noticia.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     json_out(['ok' => false, 'msg' => 'Método não permitido.'], 405);
@@ -20,6 +21,7 @@ try {
         case 'vereador_salvar':   json_out(vereador_salvar($pdo));
         case 'vereador_novo':     json_out(vereador_novo($pdo));
         case 'vereador_excluir':  json_out(vereador_excluir($pdo));
+        case 'noticia_importar': json_out(noticia_importar());
         case 'noticia_salvar':    json_out(noticia_salvar($pdo));
         case 'noticia_nova':      json_out(noticia_nova($pdo));
         case 'noticia_excluir':   json_out(noticia_excluir($pdo));
@@ -117,7 +119,12 @@ function vereador_salvar(PDO $pdo): array
     $v = ou_404($pdo, 'vereadores', inteiro('id'));
     $nome = texto('nome', 80, true, 'Nome');
     $gab = texto('gabinete', 20, false, 'Gabinete');
-    $partido = texto('partido', 40, false, 'Partido');
+    $partidoId = inteiro('partido_id');
+    $partido = '';
+    if ($partidoId) {
+        $partido = (string)sql($pdo, 'SELECT sigla FROM partidos WHERE id=:id', ['id'=>$partidoId])->fetchColumn();
+        if ($partido === '') throw new RuntimeException('Selecione um partido válido.');
+    }
     $tela = tela_valida();
     $ordem = inteiro('ordem');
 
@@ -133,8 +140,8 @@ function vereador_salvar(PDO $pdo): array
         $logoId = salvar_imagem_upload($f);
     }
 
-    sql($pdo, 'UPDATE vereadores SET nome=:n, gabinete=:g, partido=:p, tela=:t, ordem=:o, foto_id=:f, logo_id=:l, atualizado_em=now() WHERE id=:id',
-        ['n' => $nome, 'g' => $gab, 'p' => $partido, 't' => $tela, 'o' => $ordem, 'f' => $fotoId, 'l' => $logoId, 'id' => (int) $v['id']]);
+    sql($pdo, 'UPDATE vereadores SET nome=:n, gabinete=:g, partido=:p, partido_id=:pid, tela=:t, ordem=:o, foto_id=:f, logo_id=:l, atualizado_em=now() WHERE id=:id',
+        ['n' => $nome, 'g' => $gab, 'p' => $partido, 'pid' => $partidoId ?: null, 't' => $tela, 'o' => $ordem, 'f' => $fotoId, 'l' => $logoId, 'id' => (int) $v['id']]);
     foreach ($antigas as $a) {
         limpar_imagem_orfa($a);
     }
@@ -161,21 +168,34 @@ function vereador_excluir(PDO $pdo): array
 
 /* ---------- notícias ---------- */
 
+function noticia_importar(): array {
+    $link = link_ou_erro(texto('link', 2000, true, 'Link'), true);
+    return ['ok'=>true, 'msg'=>'Imagens encontradas. Selecione uma fotografia e salve.', 'dados'=>importar_noticia_oficial($link)];
+}
+
 function noticia_salvar(PDO $pdo): array
 {
     $n = ou_404($pdo, 'noticias', inteiro('id'));
     $titulo = texto('titulo', 220, true, 'Título');
     $link = link_ou_erro(texto('link', 2000, false, 'Link'), false);
-    $imagemId = $n['imagem_id'] ? (int) $n['imagem_id'] : null;
+    $imagemUrl = texto('imagem_url', 2000, false, 'URL da imagem');
+    if ($imagemUrl !== '') {
+        $u = parse_url($imagemUrl);
+        if (!$u || ($u['scheme'] ?? '') !== 'https' || !in_array(strtolower($u['host'] ?? ''), ['www.camara-alvorada.rs.gov.br','camara-alvorada.rs.gov.br'],true)) {
+            throw new RuntimeException('A fotografia externa deve pertencer ao site oficial da Câmara.');
+        }
+    }
+    $imagemId = $n['imagem_id'] ? (int)$n['imagem_id'] : null;
     $antiga = null;
     if ($f = arquivo_enviado('imagem')) {
         $antiga = $imagemId;
         $imagemId = salvar_imagem_upload($f);
+        $imagemUrl = ''; // Upload manual tem prioridade quando enviado.
     }
-    sql($pdo, 'UPDATE noticias SET titulo=:t, link=:l, ordem=:o, ativo=:a, imagem_id=:i, atualizado_em=now() WHERE id=:id',
-        ['t' => $titulo, 'l' => $link, 'o' => inteiro('ordem'), 'a' => marcado('ativo'), 'i' => $imagemId, 'id' => (int) $n['id']]);
+    sql($pdo, 'UPDATE noticias SET titulo=:t, link=:l, ordem=:o, ativo=:a, imagem_id=:i, imagem_url=:url, atualizado_em=now() WHERE id=:id',
+        ['t'=>$titulo, 'l'=>$link, 'o'=>inteiro('ordem'), 'a'=>marcado('ativo'), 'i'=>$imagemId, 'url'=>$imagemUrl, 'id'=>(int)$n['id']]);
     limpar_imagem_orfa($antiga);
-    return ['ok' => true, 'msg' => 'Notícia salva.', 'foto' => img_url($imagemId, '/assets/img/logo.png')];
+    return ['ok'=>true, 'msg'=>'Notícia salva.', 'foto'=>$imagemUrl ?: img_url($imagemId, '/assets/img/logo.png')];
 }
 
 function noticia_nova(PDO $pdo): array
