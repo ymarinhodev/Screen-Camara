@@ -37,7 +37,7 @@ try {
 } catch (RuntimeException $ex) {
     json_out(['ok' => false, 'msg' => $ex->getMessage()], 422);
 } catch (Throwable $ex) {
-    error_log('acoes: ' . $ex->getMessage());
+    error_log('acoes: ' . get_class($ex) . ' ' . $ex->getMessage() . ' at ' . basename($ex->getFile()) . ':' . $ex->getLine());
     json_out(['ok' => false, 'msg' => 'Erro interno. Tente de novo em instantes.'], 500);
 }
 

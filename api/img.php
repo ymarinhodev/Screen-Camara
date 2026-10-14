@@ -10,7 +10,7 @@ if ($id <= 0) {
 }
 
 try {
-    $st = db()->prepare('SELECT mime, dados FROM imagens WHERE id = :id');
+    $st = db()->prepare('SELECT mime, dados, base64_data FROM imagens WHERE id = :id');
     $st->execute([':id' => $id]);
     $linha = $st->fetch();
 } catch (Throwable $ex) {
@@ -24,7 +24,8 @@ if (!$linha) {
     exit;
 }
 
-$dados = ler_bytea($linha['dados']);
+$dados = !empty($linha['base64_data']) ? base64_decode($linha['base64_data'],true) : ler_bytea($linha['dados']);
+if (!is_string($dados) || $dados==='') {http_response_code(404);exit;}
 $etag  = '"' . md5($dados) . '"';
 
 header('Content-Type: ' . $linha['mime']);

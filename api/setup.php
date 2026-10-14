@@ -109,6 +109,9 @@ try {
         echo "--  QR Codes já cadastrados\n";
     }
 
+    // Atualiza os relacionamentos com o catálogo de partidos após o seed inicial.
+    $pdo->exec("INSERT INTO partidos(sigla) SELECT DISTINCT UPPER(TRIM(partido)) FROM vereadores WHERE TRIM(partido) <> '' ON CONFLICT(sigla) DO NOTHING");
+    $pdo->exec("UPDATE vereadores v SET partido_id=p.id FROM partidos p WHERE UPPER(TRIM(v.partido))=p.sigla AND v.partido_id IS NULL");
     echo "\nPronto. Acesse /login. Remova SETUP_TOKEN da Vercel agora.\n";
 } catch (Throwable $ex) {
     error_log('setup: ' . $ex->getMessage());

@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS imagens (
   id         SERIAL PRIMARY KEY,
   mime       TEXT NOT NULL,
-  dados      BYTEA NOT NULL,
+  dados      BYTEA,
+  base64_data TEXT,
   tamanho    INTEGER NOT NULL,
   criado_em  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -84,3 +85,7 @@ UPDATE vereadores v SET partido_id=p.id FROM partidos p WHERE UPPER(TRIM(v.parti
 
 -- Aproveita logos já armazenados dos vereadores para cada sigla, sem duplicar arquivos.
 UPDATE partidos p SET logo_id = x.logo_id FROM (SELECT DISTINCT ON (UPPER(TRIM(partido))) UPPER(TRIM(partido)) AS sigla, logo_id FROM vereadores WHERE logo_id IS NOT NULL AND TRIM(partido) <> '' ORDER BY UPPER(TRIM(partido)), id) x WHERE p.sigla=x.sigla AND p.logo_id IS NULL;
+
+-- Armazenamento em Base64; compatível com bases criadas em versões anteriores.
+ALTER TABLE imagens ALTER COLUMN dados DROP NOT NULL;
+ALTER TABLE imagens ADD COLUMN IF NOT EXISTS base64_data TEXT;

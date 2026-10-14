@@ -76,15 +76,11 @@ function salvar_imagem_arquivo(string $caminho, int $limite = 3500000): int
     if (!$info || !in_array($info['mime'], $mimes, true)) {
         throw new RuntimeException('Formato inválido. Envie JPG, PNG, WEBP ou GIF.');
     }
-    $fp = fopen($caminho, 'rb');
-    $st = db()->prepare('INSERT INTO imagens (mime, dados, tamanho) VALUES (:m, :d, :t) RETURNING id');
-    $st->bindValue(':m', $info['mime']);
-    $st->bindParam(':d', $fp, PDO::PARAM_LOB);
-    $st->bindValue(':t', $tamanho, PDO::PARAM_INT);
-    $st->execute();
-    $id = (int) $st->fetchColumn();
-    fclose($fp);
-    return $id;
+    $bytes=file_get_contents($caminho);
+    if ($bytes===false) throw new RuntimeException('Falha ao ler imagem.');
+    $st=db()->prepare('INSERT INTO imagens (mime, base64_data, tamanho) VALUES (:m,:d,:t) RETURNING id');
+    $st->execute([':m'=>$info['mime'],':d'=>base64_encode($bytes),':t'=>$tamanho]);
+    return (int)$st->fetchColumn();
 }
 
 function salvar_imagem_upload(array $arquivo): int
@@ -104,9 +100,10 @@ function limpar_imagem_orfa(?int $id): void
     $st = db()->prepare(
         'DELETE FROM imagens WHERE id = :a
            AND NOT EXISTS (SELECT 1 FROM vereadores WHERE foto_id = :b OR logo_id = :c)
-           AND NOT EXISTS (SELECT 1 FROM noticias WHERE imagem_id = :d)'
+           AND NOT EXISTS (SELECT 1 FROM noticias WHERE imagem_id = :d)
+           AND NOT EXISTS (SELECT 1 FROM partidos WHERE logo_id = :e)'
     );
-    $st->execute([':a' => $id, ':b' => $id, ':c' => $id, ':d' => $id]);
+    $st->execute([':a' => $id, ':b' => $id, ':c' => $id, ':d' => $id, ':e' => $id]);
 }
 
 function config_todas(): array
