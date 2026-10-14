@@ -1,0 +1,71 @@
+/* --- ANIMAÇÕES BLOCOS --- */
+
+.js .anime-esquerda {
+	opacity: 0;
+	transform: translate3D(-400px, 0, 0);
+}
+
+.js .anime-direita {
+	opacity: 0;
+	transform: translate3D(400px, 0, 0);
+}
+
+.js .anime-topo {
+	opacity: 0;
+	transform: translate(0px, -400px);
+}
+
+.js .anime-debaixo {
+	opacity: 0;
+	transform: scale(0.4);
+}
+
+.js .anime-init {
+	opacity: 1;
+	transform: translate3D(0, 0, 0);
+	transition: 1s all ease;
+}
+
+/* MENU */
+  .main-nav > li > .sub-menu-block {
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    -ms-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: top center;
+    -ms-transform-origin: top center;
+    transform-origin: top center;
+  }
+.main-nav > li > .sub-menu-block{
+    display: flex;
+    flex-direction: row;
+}
+  .main-nav > li:hover > .sub-menu-block{
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+  }
+  
+  .main-nav > li:hover > .sub-menu-block > * {
+    opacity: 1;
+  }
+  .main-nav > li > .sub-menu-block > * {
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    opacity: 0;
+  }

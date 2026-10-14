@@ -1,0 +1,190 @@
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+/*window.onscroll = function() {myFunction()};
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+    }*/
+
+$(function () {
+  //Formulários contatos
+  $(document).on('submit', '.form-contato, .form-dinamico', function (e) {
+    var form = this;
+    e.preventDefault();
+    var postData = $(form).serialize();
+
+    $.ajax({
+      url: $(this).prop('action'),
+      type: 'POST',
+      data: postData,
+      dataType: 'json',
+      cache: false,
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (result) {
+        if (result.success) {
+          swal("Aviso", result.message, "success");
+          $(form)[0].reset();
+          return true;
+        }
+        swal("Erro", result.message, "error");
+      },
+      error: function (error) {
+        var msg = 'Não foi possível enviar o formulário. Por favor, tente mais tarde.';
+        swal("Erro", msg, "error");
+        console.log(error.responseText);
+      },
+      complete: function () {
+        $.LoadingOverlay("hide");
+      }
+    });
+  });
+});
+
+//aumentar fonte
+$("#aumentarFonte").click(function () {
+  tamanhoFonte = $('body').css('font-size');
+  tamanhoFonte = parseInt(tamanhoFonte.substr(0, 2));
+
+  if (tamanhoFonte <= 16) {
+    tamanhoFonte++;
+    $('body').css('font-size', tamanhoFonte);
+  }
+
+  return false;
+});
+
+//diminuit fonte
+$("#diminuirFonte").click(function () {
+  tamanhoFonte = $('body').css('font-size');
+  tamanhoFonte = parseInt(tamanhoFonte.substr(0, 2));
+
+  if (tamanhoFonte >= 10) {
+    tamanhoFonte--;
+    $('body').css('font-size', tamanhoFonte);
+  }
+
+  return false;
+});
+
+function fecharImpressao() {
+  $('#contedoImpressao').empty();
+  $('#divImpressao').hide();
+  $('#divImpressao').modal('hide');
+}
+
+function showCategories(value, controller) {
+  var param = (value) ? '?categoria=' + value : '';
+  document.location.href = DynamikaBaseUrl + "/" + controller + "/index" + param;
+}
+
+
+$(document).on('click', '.yamm .dropdown-menu', function (e) {
+  e.stopPropagation()
+})
+
+//window.onscroll = function() {myFunction()};
+
+
+
+
+
+/*-- ANIMAÇÃO COM SCROLL PARA CARREGAMENTO DE BLOCOS --*/
+
+var root = document.documentElement;
+root.className += ' js';
+
+function boxTop(idBox) {
+  var boxOffset = $(idBox).offset().top;
+  return boxOffset;
+}
+
+$(document).ready(function () {
+  var $target = $(".anime-esquerda , .anime-topo , .anime-direita , .anime-debaixo"),
+    animationClass = 'anime-init',
+    windowHeight = $(window).height(),
+    offset = windowHeight - (windowHeight / 4);
+
+  function animeScroll() {
+    var documentTop = $(document).scrollTop();
+    $target.each(function () {
+      if (documentTop > boxTop(this) - offset) {
+        $(this).addClass(animationClass);
+      } else {
+        $(this).removeClass(animationClass);
+      }
+    });
+  }
+  animeScroll();
+
+  $(document).scroll(function () {
+    animeScroll();
+  });
+});
+
+
+
+
+
+//				Botao voltar ao topo 
+
+$(document).ready(function() {
+  var scrollTop = $(".scrollTop");
+  $(window).scroll(function() {
+    var topPos = $(this).scrollTop();
+    if (topPos > 100) {
+      $(scrollTop).css("opacity", "1");
+
+    } else {
+      $(scrollTop).css("opacity", "0");
+    }
+
+  });
+  $(scrollTop).click(function() {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+
+  });
+  var h1 = $("#h1").position();
+  var h2 = $("#h2").position();
+  var h3 = $("#h3").position();
+  $('.link1').click(function() {
+    $('html, body').animate({
+      scrollTop: h1.top
+    }, 500);
+    return false;
+
+  });
+
+  $('.link2').click(function() {
+    $('html, body').animate({
+      scrollTop: h2.top
+    }, 500);
+    return false;
+  });
+
+  $('.link3').click(function() {
+    $('html, body').animate({
+      scrollTop: h3.top
+    }, 500);
+    return false;
+
+  });
+
+});

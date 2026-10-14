@@ -1,0 +1,77 @@
+function setOpcao(valor) {
+    let texto;
+    let cor;
+
+    switch (valor) {
+        case 1:
+            texto = 'Nível Selecionado: Muito insatisfeito!';
+            cor = 'linear-gradient(to right, rgb(120, 0, 0), rgb(150, 0, 0))';
+            break;
+        case 2:
+            texto = 'Nível Selecionado: Insatisfeito!';
+            cor = 'linear-gradient(to right, rgb(120, 0, 0), rgb(150, 0, 0))';
+            break;
+        case 3:
+            texto = 'Nível Selecionado: Neutro!';
+            cor = 'linear-gradient(to right, rgb(255, 165, 0), rgb(255, 200, 0))';
+            break;
+        case 4:
+            texto = 'Nível Selecionado: Satisfeito!';
+            cor = 'linear-gradient(to right, rgb(0, 128, 0), rgb(0, 150, 0))';
+            break;
+        case 5:
+            texto = 'Nível Selecionado: Muito satisfeito!';
+            cor = 'linear-gradient(to right, rgb(0, 128, 0), rgb(0, 150, 0))';
+            break;
+        default:
+            texto = 'Nível Selecionado: Não identificado!';
+            cor = 'linear-gradient(to right, rgb(120, 0, 0), rgb(150, 0, 0))';
+            break;
+    }
+
+    Toastify({
+        text: texto,
+        duration: 2000,
+        close: false,
+        gravity: 'bottom',
+        position: 'left',
+        stopOnFocus: true,
+        style: {
+            background: cor,
+        },
+    }).showToast();
+
+    document.getElementById('avaliacao-opcao').value = valor;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const emojiCheckboxes = document.querySelectorAll('.icone-radio');
+
+    emojiCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const camposSatisfacao = document.getElementById('camposSatisfacao');
+            if (this.checked) {
+                camposSatisfacao.style.display = 'block';
+            } else {
+                camposSatisfacao.style.display = 'none';
+            }
+        });
+    });
+});
+
+function getQueryParam(param) {
+    let urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const swalParam = getQueryParam('swal');
+    if(swalParam === 'success') {
+        swal("Sucesso!", "Sua avaliação foi recebida.", "success");
+        if (window.history.replaceState) {
+            let url = new URL(window.location);
+            url.searchParams.delete('swal');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+    }
+});
