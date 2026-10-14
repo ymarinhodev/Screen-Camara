@@ -3,164 +3,342 @@
     {
       "tela": "noticias",
       "ordem": 1,
-      "nome": "Giovana Thiago",
-      "gabinete": "GAB 98",
-      "partido": "PT",
-      "foto": "media_ZvMsbaNHIrUIUTPMuf0DCDyenn4FheN5.jpeg",
-      "logo": "media_j7a5TuAsXK2evjO7mvm1QObBPO-5Htna.webp"
+      "nome": "Zézo",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1846/maior_nGsOPATZmYiF0N7gdTA3L3v3GiJeHFgF.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 2,
-      "nome": "Nadir Machado",
-      "gabinete": "GAB 13",
-      "partido": "PTB",
-      "foto": "media_G0FkhgUWsTNMvtXpRFfh7kHQmgvckeQv.jpg",
-      "logo": "media_MAgExf8qJG7Ow6-4zim8EbPVn8rlIYuq.png"
+      "nome": "Elias Fernandes",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1850/maior_ibDy4LoY4xLjPiAdv3oscRp-WgPzV_2i.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 3,
-      "nome": "Julio Bala",
-      "gabinete": "GAB 67",
-      "partido": "MDB",
-      "foto": "media_n2J8-9nPhcGC3rTvcLTE1BxwfD2R5deD.jpg",
-      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+      "nome": "Prof. Neuza do Salgado",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1853/maior_DkRbQdnWOUvZP_UuhnDWzD7TMwOVMwHS.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 4,
-      "nome": "Beto Goleiro",
-      "gabinete": "GAB 57",
-      "partido": "PL",
-      "foto": "media_9j6N2oTaQejIvkfflbV32cg9DdmZvWxA.jpg",
-      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+      "nome": "Rodrigo Mendes",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1845/maior_XHGQbF_vjTS4XLe7fd8ac6cSdWmayitO.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 5,
-      "nome": "Celmir Martello",
-      "gabinete": "GAB 56",
-      "partido": "DEM",
-      "foto": "media_kKebwmlTQlCKi5VVzaLEb5I5INFvx96V.jpeg",
-      "logo": "media_ik80LpxSmPxsiYo-j1CfA8IYycNF6CDt.png"
+      "nome": "Oliane  Santos",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1858/maior_QppOu8yDOKAcIHK-dNhf768R5AFMd2dx.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 6,
-      "nome": "Prof. Neuza do Salgado",
-      "gabinete": "GAB 12",
-      "partido": "PL",
-      "foto": "media_e7BaMugVIINu3g8Il3C3HeWVjT3VQ1JL.jpg",
-      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+      "nome": "Giovana Thiago",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/2694/maior_caun902pSfi_TOakyUDQ3kKxEuSt_Xm_.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 7,
       "nome": "Marquinhos",
-      "gabinete": "GAB 10",
-      "partido": "MDB",
-      "foto": "media_3JAwnbODPaoxt8Rw6yDQdlmchr8wz1Ux.jpg",
-      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1849/maior_Mi5LXGPLJjVuOuhWnyroTQmd95nZn-Yy.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 8,
-      "nome": "Elias Fernandes",
-      "gabinete": "GAB 65",
-      "partido": "PSB",
-      "foto": "media_Mpv9Cm-ma53aJTDJu1uEpJ16jDJXdgBF.jpeg",
-      "logo": "media_nYe8Tw88ph-KPwg2RR_VnLLMFB0M7ZJi.jpg"
+      "nome": "Celmir Martello",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1856/maior_-axNUMJT28MToDC9Lz_LQV2Qaux64h8G.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 9,
-      "nome": "Daniel Bordim",
-      "gabinete": "GAB 33",
-      "partido": "DEM",
-      "foto": "media_XnsxZ7R4bZ6qJgtHAxYVxmk47IMvqMST.jpg",
-      "logo": "media_ik80LpxSmPxsiYo-j1CfA8IYycNF6CDt.png"
+      "nome": "Preto",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1851/maior_UW1n9Cnhbm5LxuHf4xipUTgNBD5EZN6Z.jpg",
+      "logo": null
     },
     {
       "tela": "noticias",
       "ordem": 10,
-      "nome": "Schumacher",
-      "gabinete": "GAB 96",
-      "partido": "PTB",
-      "foto": "media_d9FWh72hNwd4D5iNEW4ckRJP1upChPlJ.jpeg",
-      "logo": "media_MAgExf8qJG7Ow6-4zim8EbPVn8rlIYuq.png"
+      "nome": "Daniel Bordim",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1860/maior_1MFAMDcUFPAlXVwBZa6sOlqUtu5X0oOA.jpg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 11,
+      "nome": "William Schumacher",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1852/maior_7hkeU6GavQ_BlzVWJK1adlDXzemwanA-.png",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 12,
+      "nome": "Alexandre Espeto",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1859/maior_nD80gvVt8W1C8ureTh9Ft2zx2RxWLe_s.jpg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 13,
+      "nome": "Filipe Gil",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1847/maior_dl1OLiKPgdm6cc-25skvQRG2_m--yfDZ.jpg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 14,
+      "nome": "Professor Kleiton",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1843/maior_FYezKhj_soiXsiYvsgTiGPFYIdmZOp6i.jpeg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 15,
+      "nome": "Eder Fraga",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1861/maior_RU0_eSZCydPHN3N4E-IxWPT5apAvrk5s.jpeg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 16,
+      "nome": "Leandro Tur",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1848/maior_VqJ85HBGi_EIA_R3L34gPvfoXWbvCvUV.jpg",
+      "logo": null
+    },
+    {
+      "tela": "noticias",
+      "ordem": 17,
+      "nome": "Beto Goleiro",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1862/maior_hqcmchXjEusKkZ6MOruIh-0m1G2rFkCj.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 1,
-      "nome": "Oliane  Santos",
-      "gabinete": "GAB 5",
-      "partido": "Cidadania",
-      "foto": "media_aZAVsAj9x-QikGXM_XYMLOhyaLKKcPEV.jpg",
-      "logo": "media_FiFTqKNQii4tK4afk7eRqpFHdpTcjdM3.jpeg"
+      "nome": "Zézo",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1846/maior_nGsOPATZmYiF0N7gdTA3L3v3GiJeHFgF.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 2,
-      "nome": "Preto",
-      "gabinete": "GAB 44",
-      "partido": "MDB",
-      "foto": "media_82b_hS5aOsG7DOWoFfx6CSmlOPtbglbf.jpeg",
-      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+      "nome": "Elias Fernandes",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1850/maior_ibDy4LoY4xLjPiAdv3oscRp-WgPzV_2i.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 3,
-      "nome": "Zézo",
-      "gabinete": "GAB 11",
-      "partido": "PDT",
-      "foto": "media_8nN-nZBWfEuN5Ue22_KCELZx52J6xVrJ.jpg",
-      "logo": "media_4XxYkcEtaIoz-nbH-MkbmYx5ph3EMcg3.png"
+      "nome": "Prof. Neuza do Salgado",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1853/maior_DkRbQdnWOUvZP_UuhnDWzD7TMwOVMwHS.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 4,
-      "nome": "Leandro Tur",
-      "gabinete": "GAB 22",
-      "partido": "PT",
-      "foto": "media_TtV_V0x-GQyrxKV_TL8ABMA5fdtYv9RM.jpg",
-      "logo": "media_j7a5TuAsXK2evjO7mvm1QObBPO-5Htna.webp"
+      "nome": "Rodrigo Mendes",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1845/maior_XHGQbF_vjTS4XLe7fd8ac6cSdWmayitO.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 5,
-      "nome": "Alexandre Espeto",
-      "gabinete": "GAB 23",
-      "partido": "PSD",
-      "foto": "media_NWr80kr2wlG_giZzQfb0zLCTManLJZlB.jpg",
-      "logo": "media_cwbeuYg5dul-4g3xX-zDBL1kULzWVO9y.png"
+      "nome": "Oliane  Santos",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1858/maior_QppOu8yDOKAcIHK-dNhf768R5AFMd2dx.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 6,
-      "nome": "Cristiano Oliveira",
-      "gabinete": "GAB 26",
-      "partido": "PP",
-      "foto": "media_hWY4K8At4I2uTXUVAQA0Z0tDY2EY2bCr.jpg",
-      "logo": "media_zt-IrbSQmDVm1LUKdwPSOJx04Xlv98hN.png"
+      "nome": "Giovana Thiago",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/2694/maior_caun902pSfi_TOakyUDQ3kKxEuSt_Xm_.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 7,
-      "nome": "Rodrigo Mendes",
-      "gabinete": "GAB 76",
-      "partido": "Republicanos",
-      "foto": "media_gp80iRkudc5KWbljJasakLxJ51mmeIH_.jpg",
-      "logo": "media_A9UsdrrcX3Rddnjd-xCG0LKKrl3MwDII.png"
+      "nome": "Marquinhos",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1849/maior_Mi5LXGPLJjVuOuhWnyroTQmd95nZn-Yy.jpg",
+      "logo": null
     },
     {
       "tela": "qrcode",
       "ordem": 8,
-      "nome": "Rodrigo Schim",
-      "gabinete": "GAB 76",
-      "partido": "PL",
-      "foto": "media_pYCmLhsWH4wYoXYZQlk5chGtr3CNfu6T.jpg",
-      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+      "nome": "Celmir Martello",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1856/maior_-axNUMJT28MToDC9Lz_LQV2Qaux64h8G.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 9,
+      "nome": "Preto",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1851/maior_UW1n9Cnhbm5LxuHf4xipUTgNBD5EZN6Z.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 10,
+      "nome": "Daniel Bordim",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1860/maior_1MFAMDcUFPAlXVwBZa6sOlqUtu5X0oOA.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 11,
+      "nome": "William Schumacher",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1852/maior_7hkeU6GavQ_BlzVWJK1adlDXzemwanA-.png",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 12,
+      "nome": "Alexandre Espeto",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1859/maior_nD80gvVt8W1C8ureTh9Ft2zx2RxWLe_s.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 13,
+      "nome": "Filipe Gil",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1847/maior_dl1OLiKPgdm6cc-25skvQRG2_m--yfDZ.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 14,
+      "nome": "Professor Kleiton",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1843/maior_FYezKhj_soiXsiYvsgTiGPFYIdmZOp6i.jpeg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 15,
+      "nome": "Eder Fraga",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1861/maior_RU0_eSZCydPHN3N4E-IxWPT5apAvrk5s.jpeg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 16,
+      "nome": "Leandro Tur",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1848/maior_VqJ85HBGi_EIA_R3L34gPvfoXWbvCvUV.jpg",
+      "logo": null
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 17,
+      "nome": "Beto Goleiro",
+      "gabinete": "",
+      "partido": "",
+      "foto": null,
+      "foto_caminho_oficial": "/uploads/vereador/1862/maior_hqcmchXjEusKkZ6MOruIh-0m1G2rFkCj.jpg",
+      "logo": null
     }
   ],
   "noticias": [

@@ -52,3 +52,12 @@ sql/        schema.sql, seed.json e seed-images/ (dados das telas originais)
 public/     CSS/JS/imagens estáticas (/assets/...)
 vercel.json runtime vercel-php + rotas
 ```
+
+## Correções e pendências de publicação
+
+- O arquivo `Veradores-Fotos.txt` contém **17 nomes e caminhos relativos de fotos**, não URLs completas. Foram cadastrados os 17 nomes em **cada tela**, com a correspondência original entre nome e caminho da imagem. Para exibir as fotos oficiais, configure `FOTOS_OFICIAIS_BASE` com o domínio HTTPS que hospeda os caminhos `/uploads/vereador/...` **antes do primeiro setup**. Sem isso, aparece uma imagem neutra em vez de uma foto incorreta.
+- Gabinete e partido ficaram vazios quando não constavam no arquivo fornecido; podem ser preenchidos no painel.
+- A importação inicial não substitui cadastros já existentes. Em instalações anteriores, migre/atualize os vereadores manualmente ou em banco, preservando as edições da equipe.
+- Layout retrato 9:16 para 2160×3840; valide no navegador integrado da TV real.
+- QR Code depende do serviço externo `api.qrserver.com`, tal como o projeto de referência.
+- Não há conexão Neon nem deploy Vercel neste pacote; validar runtime PHP, `pdo_pgsql`, HTTPS, fotos e login no ambiente de produção.

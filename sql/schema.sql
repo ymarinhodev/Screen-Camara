@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS vereadores (
   gabinete       TEXT NOT NULL DEFAULT '',
   partido        TEXT NOT NULL DEFAULT '',
   foto_id        INTEGER REFERENCES imagens(id) ON DELETE SET NULL,
+  foto_url       TEXT NOT NULL DEFAULT '',
   logo_id        INTEGER REFERENCES imagens(id) ON DELETE SET NULL,
   atualizado_em  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -64,3 +65,5 @@ CREATE INDEX IF NOT EXISTS idx_vereadores_tela_ordem ON vereadores (tela, ordem,
 CREATE INDEX IF NOT EXISTS idx_noticias_ordem ON noticias (ordem, id);
 CREATE INDEX IF NOT EXISTS idx_qrcodes_ordem ON qrcodes (ordem, id);
 CREATE INDEX IF NOT EXISTS idx_tentativas_ip ON tentativas_login (ip, criado_em);
+
+ALTER TABLE vereadores ADD COLUMN IF NOT EXISTS foto_url TEXT NOT NULL DEFAULT '';

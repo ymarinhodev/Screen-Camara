@@ -11,7 +11,7 @@ function tela_inicio(string $titulo, array $cfg): void
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
     <title><?= e($titulo) ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,9 @@ function tela_inicio(string $titulo, array $cfg): void
     <link href="/assets/css/estilos.css" rel="stylesheet">
     <link href="/assets/css/responsivo.css" rel="stylesheet">
     <link href="/assets/css/telas.css" rel="stylesheet">
+    <link href="/assets/css/tv-portrait.css" rel="stylesheet">
 </head>
-<body>
+<body class="tv-portrait">
     <header class="dontPrint">
         <section class="bg-primary">
             <div class="container-fluid">
@@ -73,7 +74,7 @@ function tela_vereadores(array $vereadores): void
                     <div class="vereador-grid-item">
                         <div class="card-vereador">
                             <fieldset class="fieldset-vereador">
-                                <img class="foto-vereador" src="<?= e(img_url($v['foto_id'] ? (int) $v['foto_id'] : null)) ?>" alt="<?= e($v['nome']) ?>">
+                                <img class="foto-vereador" src="<?= e(($v['foto_id'] ? img_url((int) $v['foto_id']) : (!empty($v['foto_url']) ? $v['foto_url'] : '/assets/img/sem-foto.svg'))) ?>" alt="<?= e($v['nome']) ?>">
                                 <p class="nome-vereador"><?= e($v['nome']) ?></p>
                                 <div id="canto-branco"></div>
                                 <div id="canto-azul"></div>
