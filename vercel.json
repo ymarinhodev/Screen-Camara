@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.3",
+      "includeFiles": "{config,views,sql}/**"
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/", "dest": "/api/tela-noticias.php" },
+    { "src": "/tela-noticias", "dest": "/api/tela-noticias.php" },
+    { "src": "/tela-qrcode", "dest": "/api/tela-qrcode.php" },
+    { "src": "/login", "dest": "/api/login-equipe.php" },
+    { "src": "/painel", "dest": "/api/painel.php" },
+    { "src": "/(.*)\\.php", "dest": "/api/$1.php" }
+  ]
+}

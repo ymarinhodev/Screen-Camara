@@ -1,0 +1,254 @@
+{
+  "vereadores": [
+    {
+      "tela": "noticias",
+      "ordem": 1,
+      "nome": "Giovana Thiago",
+      "gabinete": "GAB 98",
+      "partido": "PT",
+      "foto": "media_ZvMsbaNHIrUIUTPMuf0DCDyenn4FheN5.jpeg",
+      "logo": "media_j7a5TuAsXK2evjO7mvm1QObBPO-5Htna.webp"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 2,
+      "nome": "Nadir Machado",
+      "gabinete": "GAB 13",
+      "partido": "PTB",
+      "foto": "media_G0FkhgUWsTNMvtXpRFfh7kHQmgvckeQv.jpg",
+      "logo": "media_MAgExf8qJG7Ow6-4zim8EbPVn8rlIYuq.png"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 3,
+      "nome": "Julio Bala",
+      "gabinete": "GAB 67",
+      "partido": "MDB",
+      "foto": "media_n2J8-9nPhcGC3rTvcLTE1BxwfD2R5deD.jpg",
+      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 4,
+      "nome": "Beto Goleiro",
+      "gabinete": "GAB 57",
+      "partido": "PL",
+      "foto": "media_9j6N2oTaQejIvkfflbV32cg9DdmZvWxA.jpg",
+      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 5,
+      "nome": "Celmir Martello",
+      "gabinete": "GAB 56",
+      "partido": "DEM",
+      "foto": "media_kKebwmlTQlCKi5VVzaLEb5I5INFvx96V.jpeg",
+      "logo": "media_ik80LpxSmPxsiYo-j1CfA8IYycNF6CDt.png"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 6,
+      "nome": "Prof. Neuza do Salgado",
+      "gabinete": "GAB 12",
+      "partido": "PL",
+      "foto": "media_e7BaMugVIINu3g8Il3C3HeWVjT3VQ1JL.jpg",
+      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 7,
+      "nome": "Marquinhos",
+      "gabinete": "GAB 10",
+      "partido": "MDB",
+      "foto": "media_3JAwnbODPaoxt8Rw6yDQdlmchr8wz1Ux.jpg",
+      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 8,
+      "nome": "Elias Fernandes",
+      "gabinete": "GAB 65",
+      "partido": "PSB",
+      "foto": "media_Mpv9Cm-ma53aJTDJu1uEpJ16jDJXdgBF.jpeg",
+      "logo": "media_nYe8Tw88ph-KPwg2RR_VnLLMFB0M7ZJi.jpg"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 9,
+      "nome": "Daniel Bordim",
+      "gabinete": "GAB 33",
+      "partido": "DEM",
+      "foto": "media_XnsxZ7R4bZ6qJgtHAxYVxmk47IMvqMST.jpg",
+      "logo": "media_ik80LpxSmPxsiYo-j1CfA8IYycNF6CDt.png"
+    },
+    {
+      "tela": "noticias",
+      "ordem": 10,
+      "nome": "Schumacher",
+      "gabinete": "GAB 96",
+      "partido": "PTB",
+      "foto": "media_d9FWh72hNwd4D5iNEW4ckRJP1upChPlJ.jpeg",
+      "logo": "media_MAgExf8qJG7Ow6-4zim8EbPVn8rlIYuq.png"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 1,
+      "nome": "Oliane  Santos",
+      "gabinete": "GAB 5",
+      "partido": "Cidadania",
+      "foto": "media_aZAVsAj9x-QikGXM_XYMLOhyaLKKcPEV.jpg",
+      "logo": "media_FiFTqKNQii4tK4afk7eRqpFHdpTcjdM3.jpeg"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 2,
+      "nome": "Preto",
+      "gabinete": "GAB 44",
+      "partido": "MDB",
+      "foto": "media_82b_hS5aOsG7DOWoFfx6CSmlOPtbglbf.jpeg",
+      "logo": "media_lZbeagfi5pziVFIojNxYqWqVRupLlAQY.jpeg"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 3,
+      "nome": "Zézo",
+      "gabinete": "GAB 11",
+      "partido": "PDT",
+      "foto": "media_8nN-nZBWfEuN5Ue22_KCELZx52J6xVrJ.jpg",
+      "logo": "media_4XxYkcEtaIoz-nbH-MkbmYx5ph3EMcg3.png"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 4,
+      "nome": "Leandro Tur",
+      "gabinete": "GAB 22",
+      "partido": "PT",
+      "foto": "media_TtV_V0x-GQyrxKV_TL8ABMA5fdtYv9RM.jpg",
+      "logo": "media_j7a5TuAsXK2evjO7mvm1QObBPO-5Htna.webp"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 5,
+      "nome": "Alexandre Espeto",
+      "gabinete": "GAB 23",
+      "partido": "PSD",
+      "foto": "media_NWr80kr2wlG_giZzQfb0zLCTManLJZlB.jpg",
+      "logo": "media_cwbeuYg5dul-4g3xX-zDBL1kULzWVO9y.png"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 6,
+      "nome": "Cristiano Oliveira",
+      "gabinete": "GAB 26",
+      "partido": "PP",
+      "foto": "media_hWY4K8At4I2uTXUVAQA0Z0tDY2EY2bCr.jpg",
+      "logo": "media_zt-IrbSQmDVm1LUKdwPSOJx04Xlv98hN.png"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 7,
+      "nome": "Rodrigo Mendes",
+      "gabinete": "GAB 76",
+      "partido": "Republicanos",
+      "foto": "media_gp80iRkudc5KWbljJasakLxJ51mmeIH_.jpg",
+      "logo": "media_A9UsdrrcX3Rddnjd-xCG0LKKrl3MwDII.png"
+    },
+    {
+      "tela": "qrcode",
+      "ordem": 8,
+      "nome": "Rodrigo Schim",
+      "gabinete": "GAB 76",
+      "partido": "PL",
+      "foto": "media_pYCmLhsWH4wYoXYZQlk5chGtr3CNfu6T.jpg",
+      "logo": "media_SQyuzaN089FMtWytJtoCfybIdQCtSovA.jpg"
+    }
+  ],
+  "noticias": [
+    {
+      "ordem": 1,
+      "titulo": "Câmara aprova projeto sobre instalação de GPS nos veículos locados pelo município",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/10/camara-aprova-projeto-sobre-instalacao-de-gps-nos-veiculos-locados-pelo-municipio",
+      "imagem": "maior_9JRXGjRegVmJGK_n3a3TvokpZiPtL9DT.jpeg"
+    },
+    {
+      "ordem": 2,
+      "titulo": "Câmara aprova projeto que cria o Dia Municipal do Protetor de Animais",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/11/camara-aprova-projeto-que-cria-o-dia-municipal-do-protetor-de-animais",
+      "imagem": "maior_bEUHpp0PlVr_SuWrv8Qs2NcdStoBRqVA.jpeg"
+    },
+    {
+      "ordem": 3,
+      "titulo": "Câmara aprova projeto que cria estacionamentos exclusivos para motoboys nas vias públicas de Alvorada",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/12/camara-aprova-projeto-que-cria-estacionamentos-exclusivos-para-motoboys-nas-vias-publicas-de-alvorada",
+      "imagem": "maior_1IduKqeNnbbHLsUNMQiBBjCEsJ5AFa7b.jpeg"
+    },
+    {
+      "ordem": 4,
+      "titulo": "Câmara realiza audiência pública com autoridades contra o pedágio na RS-118.",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/15/camara-realiza-audiencia-publica-com-autoridades-contra-o-pedagio-na-rs-118",
+      "imagem": "maior_IoLo5Xz98HqShIvKBIOX0NjG6GSnr-S9.jpg"
+    },
+    {
+      "ordem": 5,
+      "titulo": "Vereadores conquistam 1,6 milhões de reais para Hospital de Alvorada",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/6/vereadores-conquistam-16-milhoes-de-reais-para-hospital-de-alvorada",
+      "imagem": "maior_bNPmmO4qc1rV4suD4syNQzTG5WyVXhkd.jpg"
+    },
+    {
+      "ordem": 6,
+      "titulo": "Nota oficial da Câmara Municipal de Alvorada sobre o transporte coletivo no município.",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/17/nota-oficial-da-camara-municipal-de-alvorada-sobre-o-transporte-coletivo-no-municipio",
+      "imagem": "maior__u7dZWDZBkIfd265z4na8B5do8CKarX7.jpeg"
+    },
+    {
+      "ordem": 7,
+      "titulo": "Comissão Permanente de Legislação, Justiça e Redação Final debate temas em reunião",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/7/comissao-permanente-de-legislacao-justica-e-redacao-final-debate-temas-em-reuniao",
+      "imagem": "maior_EW_yf8i_pW2tdcya3saHLiBElOF6sQu8.webp"
+    },
+    {
+      "ordem": 8,
+      "titulo": "Legislativo aprova projeto que cria a Procuradoria Especial em Defesa dos Direitos da Pessoa Idosa.",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/14/legislativo-aprova-projeto-que-cria-a-procuradoria-especial-em-defesa-dos-direitos-da-pessoa-idosa",
+      "imagem": "maior_EzlBBHpnvcFIFZLFaqPKZtF0nYXl19lf.jpeg"
+    },
+    {
+      "ordem": 9,
+      "titulo": "Câmara aprova projeto que cria a Frente Parlamentar em Apoio à Micro e Pequena Empresa em Alvorada",
+      "link": "http://camaraalvorada.eduardo.dynamika.com.br/noticia/view/8/camara-aprova-projeto-que-cria-a-frente-parlamentar-em-apoio-a-micro-e-pequena-empresa-em-alvorada",
+      "imagem": "maior_hFwjUNCrlypVeJzbbTF1X8TmVHanRTh7.jpg"
+    }
+  ],
+  "qrcodes": [
+    {
+      "ordem": 1,
+      "titulo": "Portal de Transparência",
+      "link": "https://camaraalvorada.atende.net/?pg=transparencia#!/"
+    },
+    {
+      "ordem": 2,
+      "titulo": "Comissões",
+      "link": "https://www.camara-alvorada.rs.gov.br/comissao"
+    },
+    {
+      "ordem": 3,
+      "titulo": "Portal do Cidadão",
+      "link": "https://camaraalvorada.atende.net/#!/tipo/servico/destaque/1/bloqueiascroll/1"
+    },
+    {
+      "ordem": 4,
+      "titulo": "Mesa Diretora",
+      "link": "https://www.camara-alvorada.rs.gov.br/mesa-diretora"
+    },
+    {
+      "ordem": 5,
+      "titulo": "Ouvidoria",
+      "link": "https://www.camara-alvorada.rs.gov.br/ouvidoria"
+    },
+    {
+      "ordem": 6,
+      "titulo": "Procuradorias",
+      "link": "https://www.camara-alvorada.rs.gov.br/departamento"
+    }
+  ]
+}

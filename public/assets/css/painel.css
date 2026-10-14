@@ -1,0 +1,188 @@
+/* Painel da equipe de comunicação + tela de login. Paleta herdada das telas da Câmara. */
+:root {
+  --navy: #001b45;
+  --navy-2: #294164;
+  --azul: #3273d4;
+  --ouro: #b99e44;
+  --ouro-claro: #fcb045;
+  --fundo: #e8edf2;
+  --papel: #ffffff;
+  --linha: #cdd7e1;
+  --texto: #14233b;
+  --suave: #5a6b82;
+  --erro: #b3261e;
+  --ok: #1d6b3a;
+  --raio: 10px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fundo);
+}
+img { max-width: 100%; }
+a { color: var(--azul); }
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+
+/* ---------- campos e botões ---------- */
+label { display: block; font-weight: 600; font-size: 13px; color: var(--suave); }
+input[type=text], input[type=url], input[type=email], input[type=password], input[type=number], select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--texto);
+  background: #fff;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+}
+input:focus, select:focus { border-color: var(--azul); }
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy-2);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.botao:hover { background: var(--navy); }
+.botao[disabled] { opacity: .6; cursor: progress; }
+.botao-ouro { color: var(--navy); background: linear-gradient(90deg, var(--ouro-claro), #ffff96 50%, var(--ouro-claro)); }
+.botao-ouro:hover { background: linear-gradient(90deg, #f0a030, #f5f580 50%, #f0a030); }
+.botao-claro { color: var(--navy); background: #fff; border: 1px solid var(--linha); }
+.botao-claro:hover { background: #f3f6f9; }
+.botao-perigo { color: var(--erro); background: #fff; border: 1px solid #e6b8b4; }
+.botao-perigo:hover { background: #fdeceb; }
+.botao-cheio { width: 100%; margin-top: 20px; padding: 12px; }
+
+.aviso { margin: 0 0 16px; padding: 10px 12px; border-radius: 8px; font-size: 14px; }
+.aviso-erro { color: var(--erro); background: #fdeceb; border: 1px solid #f1c4c0; }
+
+/* ---------- login ---------- */
+.pagina-login { min-height: 100vh; background: var(--navy); }
+.login { max-width: 440px; margin: 0 auto; padding: 48px 20px; }
+.login-logo { display: block; width: 280px; margin: 0 auto 28px; }
+.login-cartao {
+  padding: 32px 28px 24px;
+  background: var(--papel);
+  border-radius: var(--raio);
+  border-top: 6px solid var(--ouro-claro);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+}
+.login-cartao h1 { margin: 0 0 4px; font-size: 24px; color: var(--navy); }
+.login-texto { margin: 0 0 20px; color: var(--suave); font-size: 14px; }
+.login-cartao form label + input { margin-bottom: 14px; }
+.login-rodape { margin: 18px 0 0; text-align: center; font-size: 13px; }
+
+/* ---------- painel ---------- */
+.topo { background: var(--navy); border-bottom: 5px solid var(--ouro-claro); }
+.topo-in { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; max-width: 1180px; margin: 0 auto; padding: 12px 20px; }
+.topo img { height: 44px; width: auto; }
+.topo-titulo { margin: 0; font-size: 17px; font-weight: 600; color: #fff; }
+.topo-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-left: auto; font-size: 13px; color: #cdd7e1; }
+.topo-links a { color: #fff; }
+.topo-links form { margin: 0; }
+.topo-links .botao { padding: 6px 12px; font-size: 13px; }
+
+.abas { background: var(--papel); border-bottom: 1px solid var(--linha); }
+.abas-in { display: flex; gap: 4px; max-width: 1180px; margin: 0 auto; padding: 0 12px; overflow-x: auto; }
+.aba {
+  padding: 14px 16px 12px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--suave);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+.aba:hover { color: var(--navy); }
+.aba[aria-selected=true] { color: var(--navy); border-bottom-color: var(--ouro); }
+
+.conteudo { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
+.painel[hidden] { display: none; }
+.painel h2 { margin: 0 0 4px; font-size: 22px; color: var(--navy); }
+.painel .ajuda { margin: 0 0 20px; color: var(--suave); font-size: 14px; }
+.grupo { margin: 28px 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.grupo h3 { margin: 0; font-size: 17px; color: var(--navy); }
+.grupo .botao { margin-left: auto; padding: 8px 14px; font-size: 13px; }
+.vazio { padding: 18px; color: var(--suave); background: var(--papel); border: 1px dashed var(--linha); border-radius: var(--raio); }
+
+.cartao { margin-bottom: 12px; padding: 16px; background: var(--papel); border: 1px solid var(--linha); border-radius: var(--raio); }
+.linha-item { display: grid; gap: 16px; align-items: center; }
+.item-vereador .linha-item { grid-template-columns: 84px 1fr 64px auto; }
+.item-noticia .linha-item { grid-template-columns: 200px 1fr auto; align-items: start; }
+.item-qr .linha-item { grid-template-columns: 120px 1fr auto; align-items: start; }
+
+.campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 12px; }
+.campos .largo { grid-column: 1 / -1; }
+.campos label.marca { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--texto); }
+.campos label.marca input { width: 18px; height: 18px; margin: 0; }
+
+.acoes { display: flex; flex-direction: column; gap: 8px; min-width: 104px; }
+.acoes .botao { padding: 9px 12px; font-size: 14px; }
+
+/* envio de imagem: a própria miniatura é o botão */
+.troca { position: relative; display: block; cursor: pointer; text-align: center; }
+.troca input[type=file] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+.troca:focus-within .miniatura { outline: 3px solid var(--azul); outline-offset: 2px; }
+.troca small { display: block; margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--azul); }
+.miniatura { display: block; background: var(--navy-2); object-fit: cover; }
+.miniatura-foto { width: 84px; height: 84px; margin: 0 auto; border-radius: 50%; border: 3px solid var(--ouro); }
+.miniatura-logo { width: 56px; height: 56px; margin: 0 auto; object-fit: contain; background: var(--fundo); border-radius: 8px; }
+.miniatura-noticia { width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; }
+.qr-previa { display: block; width: 120px; height: 120px; background: #fff; border: 1px solid var(--linha); border-radius: 8px; }
+
+.dois { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+.dois .cartao form > * + * { margin-top: 12px; }
+.dois h3 { margin: 0 0 12px; font-size: 17px; color: var(--navy); }
+.usuario { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--linha); }
+.usuario:first-of-type { border-top: 0; }
+.usuario span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.usuario small { display: block; color: var(--suave); }
+
+.aviso-topo { margin: 0 0 20px; padding: 12px 14px; color: #5b4a10; background: #fff6d6; border: 1px solid #ecd98a; border-radius: 8px; font-size: 14px; }
+
+#aviso {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 16px;
+  color: #fff;
+  font-weight: 600;
+  background: var(--ok);
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+}
+#aviso[hidden] { display: none; }
+#aviso.erro { background: var(--erro); }
+
+@media (max-width: 820px) {
+  .item-vereador .linha-item { grid-template-columns: 84px 1fr; }
+  .item-vereador .miniatura-logo-caixa { grid-column: 1; grid-row: 2; }
+  .item-vereador .acoes, .item-noticia .acoes, .item-qr .acoes { flex-direction: row; grid-column: 1 / -1; }
+  .item-noticia .linha-item, .item-qr .linha-item { grid-template-columns: 1fr; }
+  .qr-previa { margin: 0 auto; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #aviso { animation: entra .18s ease-out; }
+  @keyframes entra { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+}
