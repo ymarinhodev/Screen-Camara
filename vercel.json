@@ -6,12 +6,48 @@
     }
   },
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/", "dest": "/api/tela-noticias.php" },
-    { "src": "/tela-noticias", "dest": "/api/tela-noticias.php" },
-    { "src": "/tela-qrcode", "dest": "/api/tela-qrcode.php" },
-    { "src": "/login", "dest": "/api/login-equipe.php" },
-    { "src": "/painel", "dest": "/api/painel.php" },
-    { "src": "/(.*)\\.php", "dest": "/api/$1.php" }
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/",
+      "dest": "/api/tela-noticias.php"
+    },
+    {
+      "src": "/tela-noticias",
+      "dest": "/api/tela-noticias.php"
+    },
+    {
+      "src": "/tela-qrcode",
+      "dest": "/api/tela-qrcode.php"
+    },
+    {
+      "src": "/login",
+      "dest": "/api/login-equipe.php"
+    },
+    {
+      "src": "/login-direito",
+      "dest": "/api/login-equipe.php?lado=direito"
+    },
+    {
+      "src": "/login-esquerdo",
+      "dest": "/api/login-equipe.php?lado=esquerdo"
+    },
+    {
+      "src": "/painel-direito",
+      "dest": "/api/painel.php?lado=direito"
+    },
+    {
+      "src": "/painel-esquerdo",
+      "dest": "/api/painel.php?lado=esquerdo"
+    },
+    {
+      "src": "/painel",
+      "dest": "/api/painel.php"
+    },
+    {
+      "src": "/(.*)\\.php",
+      "dest": "/api/$1.php"
+    }
   ]
 }

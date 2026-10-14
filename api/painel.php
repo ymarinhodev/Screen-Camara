@@ -5,6 +5,7 @@ require_once dirname(__DIR__) . '/config/auth.php';
 
 try {
     $eu   = auth_exigir();
+    $lado = ($_GET['lado'] ?? '') === 'esquerdo' ? 'esquerdo' : (($_GET['lado'] ?? '') === 'direito' ? 'direito' : 'ambos');
     $csrf = csrf_token($eu);
     $cfg  = config_todas();
 
@@ -165,7 +166,7 @@ function bloco_qr(array $q): void
 <header class="topo">
     <div class="topo-in">
         <img src="/assets/img/logo.png" alt="Câmara Municipal de Alvorada">
-        <h1 class="topo-titulo">Painel da Comunicação</h1>
+        <h1 class="topo-titulo">Painel da Comunicação — <?= e(ucfirst($lado)) ?></h1>
         <div class="topo-links">
             <a href="/tela-noticias" target="_blank" rel="noopener">Ver tela de notícias</a>
             <a href="/tela-qrcode" target="_blank" rel="noopener">Ver tela de QR Codes</a>
@@ -178,6 +179,7 @@ function bloco_qr(array $q): void
     </div>
 </header>
 
+<div style="text-align:center;padding:12px"><a href="/painel-direito">Gerenciar lado direito</a> · <a href="/painel-esquerdo">Gerenciar lado esquerdo</a> · <a href="/painel">Gerenciar ambos</a></div>
 <nav class="abas" aria-label="Seções do painel">
     <div class="abas-in" role="tablist">
         <button class="aba" role="tab" data-aba="vereadores" aria-selected="true">Vereadores</button>
@@ -193,7 +195,7 @@ function bloco_qr(array $q): void
     <section class="painel" id="aba-vereadores">
         <h2>Vereadores</h2>
         <p class="ajuda">Troque nome, gabinete e fotos. Clique na foto ou no logo para enviar outra imagem. As TVs recarregam sozinhas.</p>
-<?php foreach (TELAS as $chave => $titulo): ?>
+<?php foreach (TELAS as $chave => $titulo): if ($lado === 'direito' && $chave !== 'noticias') continue; if ($lado === 'esquerdo' && $chave !== 'qrcode') continue; ?>
         <div class="grupo">
             <h3><?= e($titulo) ?> (<?= count($vereadores[$chave]) ?>)</h3>
             <button type="button" class="botao botao-claro" data-novo="vereador_novo" data-tela="<?= e($chave) ?>">Adicionar vereador</button>

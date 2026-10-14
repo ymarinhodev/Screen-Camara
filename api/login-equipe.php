@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/config/auth.php';
 
+$lado = ($_GET['lado'] ?? '') === 'esquerdo' ? 'esquerdo' : (($_GET['lado'] ?? '') === 'direito' ? 'direito' : 'ambos');
+$destino = $lado === 'ambos' ? '/painel' : '/painel-' . $lado;
+$loginUrl = $lado === 'ambos' ? '/login' : '/login-' . $lado;
 $erro = '';
 $usuarioDigitado = '';
 
 try {
     if (auth_usuario()) {
-        redirect('/painel');
+        redirect($destino);
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,7 +36,7 @@ try {
             if (password_verify($senha, $hash) && $u) {
                 $pdo->prepare('DELETE FROM tentativas_login WHERE ip = :ip')->execute([':ip' => $ip]);
                 auth_entrar($u);
-                redirect('/painel');
+                redirect($destino);
             }
 
             $pdo->prepare('INSERT INTO tentativas_login (ip) VALUES (:ip)')->execute([':ip' => $ip]);
@@ -65,12 +68,12 @@ header('Cache-Control: no-store');
     <main class="login">
         <img class="login-logo" src="/assets/img/logo.png" alt="Câmara Municipal de Alvorada">
         <section class="login-cartao">
-            <h1>Login da Equipe</h1>
+            <h1>Login da Equipe — <?= e(ucfirst($lado)) ?></h1>
             <p class="login-texto">Acesso privado para atualizar vereadores, notícias e QR Codes das telas.</p>
 <?php if ($erro !== ''): ?>
             <p class="aviso aviso-erro" role="alert"><?= e($erro) ?></p>
 <?php endif; ?>
-            <form method="post" action="/login" autocomplete="on">
+            <form method="post" action="<?= e($loginUrl) ?>" autocomplete="on">
                 <label for="usuario">Nome ou e-mail</label>
                 <input id="usuario" name="usuario" type="text" value="<?= e($usuarioDigitado) ?>" autocomplete="username" required autofocus>
                 <label for="senha">Senha</label>
