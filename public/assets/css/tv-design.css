@@ -142,7 +142,7 @@ html, body {
     position: absolute;
     right: 0;
     bottom: 1px;
-    width: 95px;
+    width: 110px;
     height: 60px;
     background: #2673d5;
     border-bottom-right-radius: 67px;
@@ -191,7 +191,7 @@ html, body {
     position: absolute;
     left: 120px;
     bottom: 2px;
-    width: 100px;
+    width: 86px;
     height: 55px;
     display: flex;
     align-items: center;
@@ -218,17 +218,19 @@ html, body {
 
 .tv-person-room {
     position: absolute;
-    right: 6px;
-    bottom: 3px;
-    width: 87px;
-    height: 52px;
+    right: 0;
+    bottom: 1px;
+    width: 110px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 800;
-    letter-spacing: -.6px;
+    letter-spacing: -0.6px;
+    line-height: 1;
+    padding: 0 9px 0 2px;
     white-space: nowrap;
     color: #fff;
     z-index: 2;
@@ -673,15 +675,18 @@ html, body {
 }
 
 .tv-person-room {
-    right: 4px;
-    width: 90px;
-    height: 52px;
+    /* Mesmo tamanho e alinhamento do fundo azul do gabinete. */
+    right: 0;
+    bottom: 1px;
+    width: 110px;
+    height: 60px;
+    padding: 0 9px 0 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 21px;
-    letter-spacing: -.7px;
+    letter-spacing: -0.6px;
 }
 
 .tv-people-grid--9 .tv-person:last-child:nth-child(odd) {
