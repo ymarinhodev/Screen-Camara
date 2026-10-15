@@ -33,7 +33,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261015-2">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261015-3">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
