@@ -10,7 +10,7 @@ if ($id <= 0) {
 }
 
 try {
-    $st = db()->prepare('SELECT mime, dados, base64_data FROM imagens WHERE id = :id');
+    $st = db()->prepare('SELECT mime, dados, base64_data, arquivo_url FROM imagens WHERE id = :id');
     $st->execute([':id' => $id]);
     $linha = $st->fetch();
 } catch (Throwable $ex) {
@@ -21,6 +21,17 @@ try {
 
 if (!$linha) {
     http_response_code(404);
+    exit;
+}
+
+if (!empty($linha['arquivo_url'])) {
+    $destino = (string) $linha['arquivo_url'];
+    if (!(str_starts_with($destino, '/assets/imagens/') || (filter_var($destino, FILTER_VALIDATE_URL) && strtolower((string) parse_url($destino, PHP_URL_SCHEME)) === 'https'))) {
+        http_response_code(404);
+        exit;
+    }
+    header('Cache-Control: public, max-age=300');
+    header('Location: ' . $destino, true, 302);
     exit;
 }
 

@@ -61,7 +61,9 @@ try {
             return null;
         }
         if (!isset($cache[$arquivo])) {
-            $cache[$arquivo] = salvar_imagem_arquivo($raiz . '/sql/seed-images/' . $arquivo);
+            $mapa = json_decode((string) file_get_contents($raiz . '/sql/imagens-estaticas.json'), true) ?: [];
+            $url = $mapa[$arquivo] ?? null;
+            $cache[$arquivo] = $url ? registrar_imagem_url($url) : salvar_imagem_arquivo($raiz . '/sql/seed-images/' . $arquivo);
         }
         return $cache[$arquivo];
     };

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   criado_em   TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- Fotos ficam no próprio banco: o disco da Vercel é somente leitura.
+-- Imagens novas: URL de arquivo no GitHub; dados legados mantidos para compatibilidade.
 CREATE TABLE IF NOT EXISTS imagens (
   id         SERIAL PRIMARY KEY,
   mime       TEXT NOT NULL,
@@ -89,3 +89,5 @@ UPDATE partidos p SET logo_id = x.logo_id FROM (SELECT DISTINCT ON (UPPER(TRIM(p
 -- Armazenamento em Base64; compatível com bases criadas em versões anteriores.
 ALTER TABLE imagens ALTER COLUMN dados DROP NOT NULL;
 ALTER TABLE imagens ADD COLUMN IF NOT EXISTS base64_data TEXT;
+
+ALTER TABLE imagens ADD COLUMN IF NOT EXISTS arquivo_url TEXT;

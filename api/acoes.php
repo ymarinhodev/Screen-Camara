@@ -133,11 +133,11 @@ function vereador_salvar(PDO $pdo): array
     $antigas = [];
     if ($f = arquivo_enviado('foto')) {
         $antigas[] = $fotoId;
-        $fotoId = salvar_imagem_upload($f);
+        $fotoId = salvar_imagem_upload($f, $nome, 'vereadores');
     }
     if ($f = arquivo_enviado('logo')) {
         $antigas[] = $logoId;
-        $logoId = salvar_imagem_upload($f);
+        $logoId = salvar_imagem_upload($f, $partido, 'partidos');
     }
 
     sql($pdo, 'UPDATE vereadores SET nome=:n, gabinete=:g, partido=:p, partido_id=:pid, tela=:t, ordem=:o, foto_id=:f, logo_id=:l, atualizado_em=now() WHERE id=:id',
@@ -189,7 +189,7 @@ function noticia_salvar(PDO $pdo): array
     $antiga = null;
     if ($f = arquivo_enviado('imagem')) {
         $antiga = $imagemId;
-        $imagemId = salvar_imagem_upload($f);
+        $imagemId = salvar_imagem_upload($f, $titulo, 'noticias');
         $imagemUrl = ''; // Upload manual tem prioridade quando enviado.
     }
     sql($pdo, 'UPDATE noticias SET titulo=:t, link=:l, ordem=:o, ativo=:a, imagem_id=:i, imagem_url=:url, atualizado_em=now() WHERE id=:id',
