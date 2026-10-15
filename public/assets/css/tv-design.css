@@ -27,14 +27,39 @@ html, body { margin:0; width:100%; height:100%; overflow:hidden; }
 .tv-people-grid--9 .tv-person:last-child:nth-child(odd) { grid-column:2; }
 .tv-person { height:118px; width:316px; position:relative; isolation:isolate; filter:drop-shadow(0 6px 5px rgba(41,50,56,.37)); }
 .tv-person-bg {position:absolute;inset:1px 0 1px 0; border-radius:68px; background:linear-gradient(to bottom,#031a3e 0%,#031a3e 49%,#fff 49%,#fff 100%);z-index:0;overflow:hidden; }
-.tv-person-blue { position:absolute;right:0;bottom:1px;width:95px;height:60px;background:#2673d5;border-bottom-right-radius:67px;z-index:1; }
+.tv-person-blue {
+    position:absolute;
+    right:0;
+    bottom:1px;
+    width:95px;
+    height:60px;
+    background:#2673d5;
+    border-bottom-right-radius:67px;
+    z-index:1;
+}
 .tv-person-photo { position:absolute;top:0;left:0;width:118px;height:118px;border-radius:50%;border:4px solid #b59b40;object-fit:cover;object-position:center;background:#e8eef5;z-index:3; }
 .tv-person-name {position:absolute;left:119px;right:5px;top:7px;height:51px;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;line-height:1.15;font-weight:800;text-align:center;overflow-wrap:break-word;hyphens:auto;z-index:2;letter-spacing:-.5px;}
 .tv-person-name--long {font-size:18px;}
 .tv-person-party {position:absolute;left:120px;bottom:2px;width:100px;height:55px;display:flex;align-items:center;justify-content:center;z-index:2;}
 .tv-person-party img {width:100%;height:100%;object-fit:contain;object-position:center;}
 .tv-party-text {font-weight:900;font-size:18px;line-height:1.1;color:#13477e;text-align:center;overflow-wrap:anywhere;max-width:100%;}
-.tv-person-room {position:absolute;right:6px;bottom:3px;width:87px;height:52px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:23px;font-weight:800;letter-spacing:-.6px;white-space:nowrap;color:#fff;z-index:2;}
+.tv-person-room {
+    position:absolute;
+    right:6px;
+    bottom:3px;
+    width:87px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:23px;
+    font-weight:800;
+    letter-spacing:-.6px;
+    white-space:nowrap;
+    color:#fff;
+    z-index:2;
+}
 .tv-direction {position:absolute;z-index:1;width:190px;height:80px;}
 .tv-direction img { width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 3px rgba(0,0,0,.27)); }
 .tv-direction--right {top:558px;left:266px;}
