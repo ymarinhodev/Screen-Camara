@@ -33,7 +33,9 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261014-1">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261015-2">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
 <body class="tv-body tv-body--<?= e($tipo) ?>">
 <div class="tv-stage" id="tv-stage">
@@ -92,27 +94,20 @@ function tela_seta(bool $invertida = false): void {
 <?php
 }
 function tela_noticias(array $noticias, array $cfg): void {
-    $paginas=array_chunk($noticias, 5);
-    if (!$paginas) $paginas=[[]];
+    // Modelo de noticias do projeto original: Owl Carousel com imagens e legendas.
     ?>
-<section class="tv-news" aria-label="<?= e($cfg['noticias_titulo']) ?>">
+<section class="tv-news tv-news--legacy" aria-label="<?= e($cfg['noticias_titulo']) ?>">
     <div class="tv-news-toolbar"><span class="tv-news-tag"><?= e($cfg['noticias_titulo']) ?></span><span class="tv-news-all">Todas</span></div>
-    <div class="tv-news-pages" data-tv-news>
-<?php foreach ($paginas as $i=>$pagina): ?>
-        <div class="tv-news-grid tv-news-grid--count-<?= count($pagina) ?><?= $i===0 ? ' is-active' : '' ?>" data-tv-news-page<?= $i===0 ? '' : ' hidden' ?> aria-hidden="<?= $i===0 ? 'false' : 'true' ?>">
-<?php foreach ($pagina as $n): ?>
-            <article class="tv-news-item">
-                <?php if (!empty($n['link']) && link_valido((string)$n['link'])): ?><a href="<?= e($n['link']) ?>" tabindex="-1" aria-hidden="true"><?php endif; ?>
-                    <img src="<?= e(tv_noticia_foto($n)) ?>" alt="" loading="eager" onerror="this.onerror=null;this.src='/assets/img/logo.png'">
-                    <div class="tv-news-caption"><?= e($n['titulo']) ?></div>
-                <?php if (!empty($n['link']) && link_valido((string)$n['link'])): ?></a><?php endif; ?>
+    <div class="tv-news-legacy-content">
+        <div id="owlc0" class="owl-carousel owl-theme">
+<?php foreach ($noticias as $n): ?>
+            <article class="tv-noticia">
+                <img src="<?= e(tv_noticia_foto($n)) ?>" alt="<?= e($n['titulo']) ?>" loading="eager" onerror="this.onerror=null;this.src='/assets/img/logo.png'">
+                <h2><?= e($n['titulo']) ?></h2>
             </article>
 <?php endforeach; ?>
-<?php if (!$pagina): ?>
-            <div class="tv-news-empty">Notícias em atualização</div>
-<?php endif; ?>
         </div>
-<?php endforeach; ?>
+<?php if (!$noticias): ?><div class="tv-news-empty">Notícias em atualização</div><?php endif; ?>
     </div>
 </section>
 <?php
@@ -153,7 +148,22 @@ function tela_fim(array $cfg): void {
         </footer>
     </div>
 </div>
-<script src="/assets/js/tv-design.js?v=20261014-1"></script>
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/tv-design.js?v=20261015-2"></script>
+<script>
+(function(){
+  if (!window.jQuery || !jQuery.fn.owlCarousel) return;
+  jQuery(function($){
+    var $carousel = $('#owlc0');
+    var count = $carousel.children('.tv-noticia').length;
+    if (!count) return;
+    $carousel.owlCarousel({items: count > 1 ? 2 : 1, dots: true,
+      smartSpeed:1000, autoplay:count>1, autoplayTimeout:4000,
+      autoplayHoverPause:true, loop:count>2, margin:8});
+  });
+})();
+</script>
 <script>window.TV_REFRESH_MS = <?= $minutes * 60000 ?>;</script>
 </body></html>
 <?php
