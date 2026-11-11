@@ -36,7 +36,19 @@ function executar_migracoes(bool $forcar = false, bool $silencioso = true): arra
                 $pdo->query('SELECT pg_advisory_xact_lock(7428193)');
                 $st->execute([':c' => $chave]);
                 if ($forcar || $st->fetchColumn() !== $hash) {
-                    $pdo->exec($sql);
+                    // Um comando por vez: assim o erro real aparece (e não o "transaction is aborted").
+                    $semComentarios = preg_replace('/^\s*--.*$/m', '', $sql);
+                    foreach (preg_split('/;\s*(?:\r?\n|$)/', (string) $semComentarios) as $comando) {
+                        $comando = trim($comando);
+                        if ($comando === '') {
+                            continue;
+                        }
+                        try {
+                            $pdo->exec($comando);
+                        } catch (Throwable $e) {
+                            throw new RuntimeException($e->getMessage() . ' | Comando: ' . substr($comando, 0, 160), 0, $e);
+                        }
+                    }
                     $pdo->prepare('INSERT INTO configuracoes (chave, valor) VALUES (:c, :v)
                                    ON CONFLICT (chave) DO UPDATE SET valor = EXCLUDED.valor')
                         ->execute([':c' => $chave, ':v' => $hash]);

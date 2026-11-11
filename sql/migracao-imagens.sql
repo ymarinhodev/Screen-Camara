@@ -1,6 +1,9 @@
 -- Correção de imagens: vereadores (foto_id) e notícias (imagem_id). Idempotente, pode rodar mais de uma vez.
 -- Rode no Neon: SQL Editor > colar tudo > Run.
 
+-- 0) Acerta a sequência de ids (registros inseridos manualmente podem deixá-la atrasada)
+SELECT setval(pg_get_serial_sequence('imagens','id'), (SELECT COALESCE(MAX(id),1) FROM imagens));
+
 -- 1) Registrar as imagens na tabela imagens (só se ainda não existirem)
 INSERT INTO imagens (mime, tamanho, arquivo_url)
 SELECT 'image/jpeg', 292019, '/assets/imagens/vereadores/elias-fernandes.jpg'
