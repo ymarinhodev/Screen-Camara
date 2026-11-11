@@ -881,7 +881,7 @@ html, body {
 }
 .tv-seta-anim {
     position: relative;
-    width: 76px;
+    width: 124px;
     height: 48px;
 }
 .tv-seta-anim::before {
@@ -912,8 +912,8 @@ html, body {
 }
 .tv-direction--right {
     z-index: 3;
-    /* Tela de notícias: seta no lado direito (centro da seta em x≈570) */
-    left: 475px;
+    /* Tela de notícias: centralizada abaixo do William Schumacher (coluna da direita, centro x≈491) */
+    left: 396px;
     transform: none;
 }
 .tv-direction--right .tv-seta-svg { transform: scaleX(-1); }
@@ -930,7 +930,7 @@ html, body {
     animation: none;
 }
 .tv-direction--left .tv-seta-anim {
-    width: 108px;
+    width: 176px;
     height: 68px;
     animation: tv-seta-left 2s ease-in-out infinite;
 }

@@ -34,7 +34,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-6">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-7">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
@@ -95,7 +95,7 @@ function tela_seta(bool $invertida = false): void {
     ?>
 <div class="tv-direction tv-direction--<?= $lado ?>" aria-hidden="true">
     <div class="tv-seta-anim">
-        <svg class="tv-seta-svg" viewBox="0 0 76 48" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <svg class="tv-seta-svg" viewBox="0 0 124 48" xmlns="http://www.w3.org/2000/svg" focusable="false">
             <defs>
                 <linearGradient id="tvSetaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stop-color="#00a2f3"/>
@@ -107,12 +107,12 @@ function tela_seta(bool $invertida = false): void {
                     <stop offset="50%" stop-color="#fff" stop-opacity=".75"/>
                     <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
                 </linearGradient>
-                <clipPath id="tvSetaClip"><path d="M2 24 L44 2 L44 14 L74 14 L74 34 L44 34 L44 46 Z"/></clipPath>
+                <clipPath id="tvSetaClip"><path d="M2 24 L44 2 L44 14 L122 14 L122 34 L44 34 L44 46 Z"/></clipPath>
             </defs>
-            <path d="M2 24 L44 2 L44 14 L74 14 L74 34 L44 34 L44 46 Z" fill="url(#tvSetaGrad)" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M2 24 L44 2 L44 14 L122 14 L122 34 L44 34 L44 46 Z" fill="url(#tvSetaGrad)" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
             <g clip-path="url(#tvSetaClip)">
                 <rect x="0" y="0" width="30" height="48" fill="url(#tvSetaShine)">
-                    <animateTransform attributeName="transform" type="translate" values="-40 0;90 0;90 0" keyTimes="0;.6;1" dur="3.4s" repeatCount="indefinite"/>
+                    <animateTransform attributeName="transform" type="translate" values="-40 0;130 0;130 0" keyTimes="0;.6;1" dur="3.4s" repeatCount="indefinite"/>
                 </rect>
             </g>
         </svg>
@@ -191,7 +191,7 @@ function tela_fim(array $cfg): void {
 </div>
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/tv-design.js?v=20261111-6"></script>
+<script src="/assets/js/tv-design.js?v=20261111-7"></script>
 <script>
 (function(){
   if (!window.jQuery || !jQuery.fn.owlCarousel) return;
