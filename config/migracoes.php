@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
 
-const MIGRACOES_VERSAO = 3;
+const MIGRACOES_VERSAO = 4;
 
 /**
  * Executa os arquivos sql/migracao-imagens*.sql uma vez por versão do arquivo (hash em configuracoes).
@@ -16,6 +16,8 @@ function executar_migracoes(bool $forcar = false, bool $silencioso = true): arra
     $etapa = 'conexão';
     try {
         $pdo = db();
+        // Envio em texto simples: evita comandos preparados no servidor (problemáticos com o pooler do Neon).
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
         foreach (glob(dirname(__DIR__) . '/sql/migracao-imagens*.sql') ?: [] as $arquivo) {
             $sql = (string) file_get_contents($arquivo);
             if (trim($sql) === '') {
@@ -35,12 +37,18 @@ function executar_migracoes(bool $forcar = false, bool $silencioso = true): arra
             $semComentarios = (string) preg_replace('/^\s*--.*$/m', '', $sql);
             $comandos = array_values(array_filter(array_map('trim', preg_split('/;\s*(?:\r?\n|$)/', $semComentarios) ?: [])));
 
+            $anterior = '(nenhum)';
             $etapa = 'iniciar transação';
             $pdo->beginTransaction();
             try {
                 foreach ($comandos as $i => $comando) {
                     $etapa = 'comando ' . ($i + 1) . '/' . count($comandos) . ': ' . substr(preg_replace('/\s+/', ' ', $comando), 0, 140);
-                    $pdo->query($comando)->closeCursor();
+                    try {
+                        $pdo->query($comando)->closeCursor();
+                    } catch (Throwable $e) {
+                        throw new RuntimeException($e->getMessage() . ' || comando anterior: ' . $anterior, 0, $e);
+                    }
+                    $anterior = substr(preg_replace('/\s+/', ' ', $comando), 0, 140);
                 }
                 $etapa = 'registrar migração';
                 $pdo->query('INSERT INTO configuracoes (chave, valor) VALUES (' . $pdo->quote($chave) . ', ' . $pdo->quote($hash) . ')
