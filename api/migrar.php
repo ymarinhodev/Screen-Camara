@@ -20,6 +20,7 @@ if ($esperado === '' || !hash_equals($esperado, $enviado)) {
     exit("Acesso negado. Configure MIGRACAO_TOKEN na Vercel e use ?token=...\n");
 }
 
+echo 'migracoes v' . MIGRACOES_VERSAO . "\n";
 $res = executar_migracoes(!empty($_GET['forcar']), false);
 foreach ($res as $arquivo => $status) {
     echo $arquivo . ': ' . $status . "\n";
