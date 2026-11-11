@@ -881,7 +881,7 @@ html, body {
 }
 .tv-seta-anim {
     position: relative;
-    width: 190px;
+    width: 76px;
     height: 48px;
 }
 .tv-seta-anim::before {
@@ -910,7 +910,12 @@ html, body {
     white-space: nowrap;
     animation: tv-label-float 3.2s ease-in-out infinite;
 }
-.tv-direction--right { z-index: 3; }
+.tv-direction--right {
+    z-index: 3;
+    /* Tela de notícias: seta no lado direito (centro da seta em x≈570) */
+    left: 475px;
+    transform: none;
+}
 .tv-direction--right .tv-seta-svg { transform: scaleX(-1); }
 .tv-direction--right .tv-seta-anim { animation: tv-seta-right 2s ease-in-out infinite; }
 
@@ -925,7 +930,7 @@ html, body {
     animation: none;
 }
 .tv-direction--left .tv-seta-anim {
-    width: 270px;
+    width: 108px;
     height: 68px;
     animation: tv-seta-left 2s ease-in-out infinite;
 }
