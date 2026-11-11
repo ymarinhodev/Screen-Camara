@@ -34,7 +34,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-3">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-4">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
@@ -150,12 +150,25 @@ function tela_fim(array $cfg): void {
                 <?= e(trim($partes[0])) ?><?= count($partes)>1 ? ':' : '' ?>
                 <?php if(count($partes)>1): ?><br><span><?= e(trim($partes[1])) ?></span><?php endif; ?>
             </div>
+            <div class="tv-footer-live" aria-label="Hora e clima">
+                <div class="tv-clock-box">
+                    <div class="tv-clock" id="tv-clock">--:--</div>
+                    <div class="tv-date" id="tv-date"></div>
+                </div>
+                <div class="tv-weather" id="tv-weather" hidden>
+                    <svg class="tv-weather-icon" id="tv-weather-icon" viewBox="0 0 24 24" aria-hidden="true"></svg>
+                    <div class="tv-weather-text">
+                        <div class="tv-weather-temp" id="tv-weather-temp">--°C</div>
+                        <div class="tv-weather-desc" id="tv-weather-desc">Alvorada, RS</div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 </div>
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/tv-design.js?v=20261111-2"></script>
+<script src="/assets/js/tv-design.js?v=20261111-4"></script>
 <script>
 (function(){
   if (!window.jQuery || !jQuery.fn.owlCarousel) return;

@@ -701,11 +701,10 @@ html, body {
 /* Seta GIF da tela de QR Codes: mesma caixa da seta da tela de Notícias (190 x 66).
    Se o GIF tiver margem transparente e parecer menor, aumente --seta-gif-escala (ex.: 2.6). */
 .tv-direction--left {
-    --seta-gif-escala: 3.9  ;
-    top: 570;
+    --seta-gif-escala: 2.2;
+    top: 554px;
     width: 190px;
     height: 66px;
-    margin-left: 40px;
     z-index: 3;
     pointer-events: none;
 }
@@ -717,4 +716,177 @@ html, body {
     object-fit: contain;
     transform: scale(var(--seta-gif-escala));
     transform-origin: center center;
+}
+
+/* ==========================================================================
+   Melhorias visuais (somente front-end): degradê animado, seta pulsante,
+   textura, entrada dos cards, relógio e clima no rodapé.
+   ========================================================================== */
+
+/* Cabeçalho: degradê institucional em movimento + malha + faixa de luz */
+.tv-header {
+    overflow: hidden;
+    background: linear-gradient(135deg,#041d43 0%,#0a2c61 30%,#124a96 60%,#0a69ad 84%,#041d43 100%);
+    background-size: 260% 260%;
+    animation: tv-header-flow 14s ease-in-out infinite;
+}
+.tv-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 86% 20%,rgba(0,163,224,.45) 0,rgba(0,163,224,0) 45%),
+        linear-gradient(to right,rgba(255,255,255,.04) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size: 100% 100%,24px 24px,24px 24px;
+    pointer-events: none;
+}
+.tv-header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 34%;
+    background: linear-gradient(90deg,transparent,rgba(125,211,252,.22),transparent);
+    transform: translateX(-140%) skewX(-24deg);
+    animation: tv-header-sweep 8s cubic-bezier(.4,0,.2,1) infinite;
+    pointer-events: none;
+}
+.tv-header-logo {
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 3px 5px rgba(0,0,0,.45));
+}
+@keyframes tv-header-flow {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+@keyframes tv-header-sweep {
+    0% { transform: translateX(-140%) skewX(-24deg); }
+    55%,100% { transform: translateX(340%) skewX(-24deg); }
+}
+
+/* Faixa dourada com brilho metálico discreto */
+.tv-heading {
+    background: linear-gradient(110deg,#f9e080 0%,#ffce28 35%,#ffe58a 50%,#ffce28 65%,#f9e080 100%);
+    background-size: 220% 100%;
+    animation: tv-gold-shine 7s linear infinite;
+}
+@keyframes tv-gold-shine {
+    0% { background-position: 0% 0; }
+    100% { background-position: -220% 0; }
+}
+
+/* Fundo da área principal com textura sutil de grade */
+.tv-main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(4,29,67,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(4,29,67,.035) 1px,transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+/* Cards dos vereadores entram em cascata a cada troca de página */
+@keyframes tv-card-in {
+    0% { opacity: 0; transform: translateY(14px) scale(.97); }
+    100% { opacity: 1; transform: none; }
+}
+.tv-people-page.is-active .tv-person {
+    animation: tv-card-in .6s cubic-bezier(.22,1,.36,1) both;
+}
+.tv-people-page.is-active .tv-person:nth-child(2) { animation-delay: .06s; }
+.tv-people-page.is-active .tv-person:nth-child(3) { animation-delay: .12s; }
+.tv-people-page.is-active .tv-person:nth-child(4) { animation-delay: .18s; }
+.tv-people-page.is-active .tv-person:nth-child(5) { animation-delay: .24s; }
+.tv-people-page.is-active .tv-person:nth-child(6) { animation-delay: .30s; }
+.tv-people-page.is-active .tv-person:nth-child(7) { animation-delay: .36s; }
+.tv-people-page.is-active .tv-person:nth-child(8) { animation-delay: .42s; }
+.tv-people-page.is-active .tv-person:nth-child(9) { animation-delay: .48s; }
+
+/* Seta pulsando na direção em que aponta (o GIF já é animado, então só a SVG pulsa) */
+.tv-direction img:not(.imagem-mexendo) {
+    animation: tv-seta-pulse 2s ease-in-out infinite;
+}
+@keyframes tv-seta-pulse {
+    0%,100% { transform: translateX(0) scale(1); filter: drop-shadow(0 4px 3px rgba(0,0,0,.27)); }
+    50% { transform: translateX(14px) scale(1.04); filter: drop-shadow(0 6px 9px rgba(0,136,204,.55)); }
+}
+
+/* Rodapé: marca + horário + relógio/clima */
+.tv-footer {
+    background: linear-gradient(90deg,#041d43 0%,#0a2c61 50%,#041d43 100%);
+    justify-content: space-between;
+    gap: 14px;
+    padding: 0 16px;
+}
+.tv-footer-brand { margin-left: 0; }
+.tv-footer-hours {
+    margin-right: 0;
+    width: auto;
+    min-width: 0;
+    font-size: 13px;
+    letter-spacing: -.3px;
+}
+.tv-footer-brand-text { font-size: 15px; }
+.tv-footer-live {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: none;
+}
+.tv-clock-box {
+    text-align: center;
+    padding-right: 10px;
+    border-right: 1px solid rgba(255,255,255,.22);
+}
+.tv-clock {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: .5px;
+    font-variant-numeric: tabular-nums;
+}
+.tv-date {
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #cfe3ff;
+}
+.tv-weather {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.tv-weather-icon {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    fill: none;
+    stroke: #ffce28;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.tv-weather-temp {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 800;
+}
+.tv-weather-desc {
+    margin-top: 3px;
+    max-width: 86px;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 600;
+    color: #cfe3ff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
