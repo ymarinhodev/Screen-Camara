@@ -34,7 +34,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-4">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-5">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
@@ -88,13 +88,36 @@ function tela_vereadores(array $vereadores, int $porPagina): void {
 <?php
 }
 function tela_seta(bool $invertida = false): void {
+    // Seta animada com brilho e legenda embaixo (estilo do painel interativo).
+    // $invertida = true aponta para a direita; false aponta para a esquerda.
+    $lado = $invertida ? 'right' : 'left';
+    $texto = $invertida ? 'Corredor à Direita' : 'Corredor à Esquerda';
     ?>
-<div class="tv-direction <?= $invertida ? 'tv-direction--right' : 'tv-direction--left' ?>" aria-hidden="true">
-    <?php if ($invertida): ?>
-    <img src="/assets/img/seta-design.svg" alt="">
-    <?php else: ?>
-    <img class="imagem-mexendo" src="https://gifmania.com.br/wp-content/uploads/2025/05/gif_seta_.gif" alt="" onerror="this.onerror=null;this.src='/assets/img/seta-design.svg'">
-    <?php endif; ?>
+<div class="tv-direction tv-direction--<?= $lado ?>" aria-hidden="true">
+    <div class="tv-seta-anim">
+        <svg class="tv-seta-svg" viewBox="0 0 190 48" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <defs>
+                <linearGradient id="tvSetaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00a2f3"/>
+                    <stop offset="60%" stop-color="#0088cc"/>
+                    <stop offset="100%" stop-color="#006699"/>
+                </linearGradient>
+                <linearGradient id="tvSetaShine" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+                    <stop offset="50%" stop-color="#fff" stop-opacity=".75"/>
+                    <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+                <clipPath id="tvSetaClip"><path d="M2 24 L44 2 L44 14 L186 14 L186 34 L44 34 L44 46 Z"/></clipPath>
+            </defs>
+            <path d="M2 24 L44 2 L44 14 L186 14 L186 34 L44 34 L44 46 Z" fill="url(#tvSetaGrad)" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+            <g clip-path="url(#tvSetaClip)">
+                <rect x="0" y="0" width="46" height="48" fill="url(#tvSetaShine)">
+                    <animateTransform attributeName="transform" type="translate" values="-60 0;220 0;220 0" keyTimes="0;.6;1" dur="3.4s" repeatCount="indefinite"/>
+                </rect>
+            </g>
+        </svg>
+    </div>
+    <span class="tv-seta-label"><?= e($texto) ?></span>
 </div>
 <?php
 }
@@ -168,7 +191,7 @@ function tela_fim(array $cfg): void {
 </div>
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/tv-design.js?v=20261111-4"></script>
+<script src="/assets/js/tv-design.js?v=20261111-5"></script>
 <script>
 (function(){
   if (!window.jQuery || !jQuery.fn.owlCarousel) return;

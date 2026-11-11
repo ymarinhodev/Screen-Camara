@@ -51,7 +51,8 @@
   function dois(n){ return (n<10?'0':'')+n; }
   function tick(){
     var d=new Date();
-    clock.textContent=fHora ? fHora.format(d) : dois(d.getHours())+':'+dois(d.getMinutes());
+    var hm=(fHora ? fHora.format(d) : dois(d.getHours())+':'+dois(d.getMinutes())).split(':');
+    clock.innerHTML=hm[0]+'<span class="tv-colon">:</span>'+(hm[1]||'00');
     if (dateEl && fData) dateEl.textContent=fData.format(d).replace(/\./g,'');
   }
   tick();
@@ -94,4 +95,23 @@
   }
   clima();
   window.setInterval(clima,600000);
+})();
+
+/* Destaque rotativo: um vereador por vez ganha brilho dourado e sobe levemente. */
+(function(){
+  'use strict';
+  var STEP=2600, idx=0, ultimo=null;
+  function cards(){
+    var pagina=document.querySelector('.tv-people-page.is-active');
+    return pagina ? pagina.querySelectorAll('.tv-person') : [];
+  }
+  function passo(){
+    if (ultimo) ultimo.classList.remove('is-spot');
+    var lista=cards();
+    if (!lista.length) { ultimo=null; return; }
+    ultimo=lista[idx % lista.length];
+    ultimo.classList.add('is-spot');
+    idx++;
+  }
+  window.setTimeout(function(){ passo(); window.setInterval(passo,STEP); },1800);
 })();

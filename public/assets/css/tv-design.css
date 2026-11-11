@@ -698,25 +698,6 @@ html, body {
     grid-column: 2;
 }
 
-/* Seta GIF da tela de QR Codes: mesma caixa da seta da tela de Notícias (190 x 66).
-   Se o GIF tiver margem transparente e parecer menor, aumente --seta-gif-escala (ex.: 2.6). */
-.tv-direction--left {
-    --seta-gif-escala: 2.2;
-    top: 554px;
-    width: 190px;
-    height: 66px;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.tv-direction--left img.imagem-mexendo {
-    width: 190px;
-    height: 66px;
-    max-width: none;
-    object-fit: contain;
-    transform: scale(var(--seta-gif-escala));
-    transform-origin: center center;
-}
 
 /* ==========================================================================
    Melhorias visuais (somente front-end): degradê animado, seta pulsante,
@@ -784,9 +765,12 @@ html, body {
     position: absolute;
     inset: 0;
     background-image:
+        radial-gradient(circle at 50% 50%,rgba(0,136,204,.16) 0,rgba(0,136,204,0) 32%),
         linear-gradient(rgba(4,29,67,.035) 1px,transparent 1px),
         linear-gradient(90deg,rgba(4,29,67,.035) 1px,transparent 1px);
-    background-size: 20px 20px;
+    background-size: 220% 220%,20px 20px,20px 20px;
+    background-repeat: no-repeat,repeat,repeat;
+    animation: tv-ambient 22s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -796,7 +780,7 @@ html, body {
     100% { opacity: 1; transform: none; }
 }
 .tv-people-page.is-active .tv-person {
-    animation: tv-card-in .6s cubic-bezier(.22,1,.36,1) both;
+    animation: tv-card-in .6s cubic-bezier(.22,1,.36,1) backwards;
 }
 .tv-people-page.is-active .tv-person:nth-child(2) { animation-delay: .06s; }
 .tv-people-page.is-active .tv-person:nth-child(3) { animation-delay: .12s; }
@@ -807,14 +791,6 @@ html, body {
 .tv-people-page.is-active .tv-person:nth-child(8) { animation-delay: .42s; }
 .tv-people-page.is-active .tv-person:nth-child(9) { animation-delay: .48s; }
 
-/* Seta pulsando na direção em que aponta (o GIF já é animado, então só a SVG pulsa) */
-.tv-direction img:not(.imagem-mexendo) {
-    animation: tv-seta-pulse 2s ease-in-out infinite;
-}
-@keyframes tv-seta-pulse {
-    0%,100% { transform: translateX(0) scale(1); filter: drop-shadow(0 4px 3px rgba(0,0,0,.27)); }
-    50% { transform: translateX(14px) scale(1.04); filter: drop-shadow(0 6px 9px rgba(0,136,204,.55)); }
-}
 
 /* Rodapé: marca + horário + relógio/clima */
 .tv-footer {
@@ -890,3 +866,159 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ==========================================================================
+   Seta animada com legenda (corredor), movimento extra e destaques
+   ========================================================================== */
+
+/* --- Seta + texto --- */
+.tv-direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
+}
+.tv-seta-anim {
+    position: relative;
+    width: 190px;
+    height: 48px;
+}
+.tv-seta-anim::before {
+    content: "";
+    position: absolute;
+    inset: -10px -14px;
+    background: radial-gradient(ellipse at center,rgba(0,162,243,.55) 0,rgba(0,162,243,0) 66%);
+    animation: tv-seta-glow 2s ease-in-out infinite;
+}
+.tv-seta-svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 4px 4px rgba(0,60,120,.35));
+}
+.tv-seta-label {
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: #0a3a78;
+    white-space: nowrap;
+    animation: tv-label-float 3.2s ease-in-out infinite;
+}
+.tv-direction--right { z-index: 3; }
+.tv-direction--right .tv-seta-svg { transform: scaleX(-1); }
+.tv-direction--right .tv-seta-anim { animation: tv-seta-right 2s ease-in-out infinite; }
+
+/* QR Codes: a seta ocupa o espaço vazio da última linha de vereadores */
+.tv-direction--left {
+    top: 551px;
+    left: 40px;
+    width: 270px;
+    height: 100px;
+    transform: none;
+    z-index: 3;
+    animation: none;
+}
+.tv-direction--left .tv-seta-anim {
+    width: 270px;
+    height: 68px;
+    animation: tv-seta-left 2s ease-in-out infinite;
+}
+.tv-direction--left .tv-seta-label {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 16px;
+}
+@keyframes tv-seta-left {
+    0%,100% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(-16px) scale(1.04); }
+}
+@keyframes tv-seta-right {
+    0%,100% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(16px) scale(1.04); }
+}
+@keyframes tv-seta-glow {
+    0%,100% { opacity: .35; transform: scale(.94); }
+    50% { opacity: 1; transform: scale(1.06); }
+}
+@keyframes tv-label-float {
+    0%,100% { transform: translateY(0); opacity: .75; }
+    50% { transform: translateY(2px); opacity: 1; }
+}
+
+/* --- Luz ambiente no fundo --- */
+@keyframes tv-ambient {
+    0%,100% { background-position: 0% 0%,0 0,0 0; }
+    50% { background-position: 100% 100%,0 0,0 0; }
+}
+
+/* --- Logo do cabeçalho flutuando levemente --- */
+.tv-header-logo { animation: tv-float 5s ease-in-out infinite; }
+@keyframes tv-float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* --- Cards: respiração da foto, brilho passando e destaque rotativo --- */
+.tv-person {
+    filter: drop-shadow(0 6px 5px rgba(41,50,56,.37)) drop-shadow(0 0 0 rgba(255,206,40,0));
+    transition: transform .55s cubic-bezier(.34,1.56,.64,1), filter .55s ease;
+}
+.tv-person.is-spot {
+    transform: translateY(-5px) scale(1.035);
+    filter: drop-shadow(0 11px 8px rgba(41,50,56,.4)) drop-shadow(0 0 13px rgba(255,206,40,.9));
+    z-index: 6;
+}
+.tv-person-photo { animation: tv-breathe 6s ease-in-out infinite; }
+.tv-person:nth-child(odd) .tv-person-photo { animation-delay: -3s; }
+.tv-person:nth-child(3n) .tv-person-photo { animation-delay: -1.5s; }
+.tv-person.is-spot .tv-person-photo { animation-duration: 1.6s; }
+@keyframes tv-breathe {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.035); }
+}
+.tv-person-bg::after,
+.tv-person-blue::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 38%;
+    background: linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);
+    transform: translateX(-160%) skewX(-20deg);
+    animation: tv-sheen 7s ease-in-out infinite;
+}
+.tv-person-blue { overflow: hidden; }
+.tv-person:nth-child(2n) .tv-person-bg::after,
+.tv-person:nth-child(2n) .tv-person-blue::after { animation-delay: 1.4s; }
+.tv-person:nth-child(3n) .tv-person-bg::after,
+.tv-person:nth-child(3n) .tv-person-blue::after { animation-delay: 2.8s; }
+.tv-person:nth-child(5n) .tv-person-bg::after,
+.tv-person:nth-child(5n) .tv-person-blue::after { animation-delay: 4.2s; }
+@keyframes tv-sheen {
+    0% { transform: translateX(-160%) skewX(-20deg); }
+    28%,100% { transform: translateX(420%) skewX(-20deg); }
+}
+
+/* --- Notícias: zoom lento (Ken Burns) na imagem em destaque --- */
+.tv-news--legacy .owl-item.active .tv-noticia img {
+    animation: tv-kenburns 9s ease-in-out infinite alternate;
+}
+@keyframes tv-kenburns {
+    0% { transform: scale(1) translate(0,0); }
+    100% { transform: scale(1.09) translate(-1.5%,-1.5%); }
+}
+
+/* --- Rodapé: dois-pontos do relógio piscando e ícone do clima flutuando --- */
+.tv-colon { animation: tv-blink 1s steps(1,end) infinite; }
+@keyframes tv-blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: .15; }
+}
+.tv-weather-icon { animation: tv-float 3.6s ease-in-out infinite; }
