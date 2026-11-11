@@ -2,7 +2,7 @@
 -- Rode no Neon: SQL Editor > colar tudo > Run.
 
 -- 0) Acerta a sequência de ids (registros inseridos manualmente podem deixá-la atrasada)
-SELECT setval(pg_get_serial_sequence('imagens','id'), (SELECT COALESCE(MAX(id),1) FROM imagens));
+DO $$ BEGIN PERFORM setval(pg_get_serial_sequence('imagens','id'), (SELECT COALESCE(MAX(id),1) FROM imagens)); EXCEPTION WHEN OTHERS THEN NULL; END $$;
 
 -- 1) Registrar as imagens na tabela imagens (só se ainda não existirem)
 INSERT INTO imagens (mime, tamanho, arquivo_url)
