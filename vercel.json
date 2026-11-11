@@ -22,6 +22,10 @@
       "dest": "/api/tela-qrcode.php"
     },
     {
+      "src": "/migrar",
+      "dest": "/api/migrar.php"
+    },
+    {
       "src": "/login",
       "dest": "/api/login-equipe.php"
     },

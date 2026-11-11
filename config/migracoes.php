@@ -9,8 +9,9 @@ require_once __DIR__ . '/db.php';
  * configuracoes (chave "migracao_<arquivo>") com o hash do arquivo: se o SQL mudar, roda de novo.
  * Nunca derruba a tela: qualquer erro só é gravado no log.
  */
-function executar_migracoes(): void
+function executar_migracoes(bool $forcar = false, bool $silencioso = true): array
 {
+    $resultado = [];
     try {
         $pdo = db();
         $arquivos = glob(dirname(__DIR__) . '/sql/migracao-imagens*.sql') ?: [];
@@ -24,8 +25,9 @@ function executar_migracoes(): void
 
             $st = $pdo->prepare('SELECT valor FROM configuracoes WHERE chave = :c');
             $st->execute([':c' => $chave]);
-            if ($st->fetchColumn() === $hash) {
-                continue; // já aplicada
+            if (!$forcar && $st->fetchColumn() === $hash) {
+                $resultado[basename($arquivo)] = 'já aplicada';
+                continue;
             }
 
             $pdo->beginTransaction();
@@ -33,13 +35,14 @@ function executar_migracoes(): void
                 // Trava para que duas requisições simultâneas não rodem a migração juntas.
                 $pdo->query('SELECT pg_advisory_xact_lock(7428193)');
                 $st->execute([':c' => $chave]);
-                if ($st->fetchColumn() !== $hash) {
+                if ($forcar || $st->fetchColumn() !== $hash) {
                     $pdo->exec($sql);
                     $pdo->prepare('INSERT INTO configuracoes (chave, valor) VALUES (:c, :v)
                                    ON CONFLICT (chave) DO UPDATE SET valor = EXCLUDED.valor')
                         ->execute([':c' => $chave, ':v' => $hash]);
                 }
                 $pdo->commit();
+                $resultado[basename($arquivo)] = 'executada com sucesso';
             } catch (Throwable $e) {
                 if ($pdo->inTransaction()) {
                     $pdo->rollBack();
@@ -49,5 +52,14 @@ function executar_migracoes(): void
         }
     } catch (Throwable $e) {
         error_log('migracoes: ' . $e->getMessage());
+        $resultado['erro'] = $silencioso ? 'falhou (veja o log da Vercel)' : $e->getMessage();
+    }
+    return $resultado;
+}
+
+// Execução direta pelo terminal: php config/migracoes.php [--forcar]
+if (PHP_SAPI === 'cli' && isset($argv[0]) && realpath($argv[0]) === __FILE__) {
+    foreach (executar_migracoes(in_array('--forcar', $argv, true), false) as $arquivo => $status) {
+        echo $arquivo . ': ' . $status . PHP_EOL;
     }
 }
