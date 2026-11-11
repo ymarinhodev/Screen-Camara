@@ -4,7 +4,11 @@
   var stage=document.getElementById('tv-stage');
   function resize(){
     if (!stage) return;
-    var s=Math.min(window.innerWidth/720,window.innerHeight/1280);
+    var landscape=window.innerWidth>window.innerHeight;
+    stage.classList.toggle('is-rotated-left',landscape);
+    var s=landscape
+      ? Math.min(window.innerWidth/1280,window.innerHeight/720)
+      : Math.min(window.innerWidth/720,window.innerHeight/1280);
     stage.style.setProperty('--tv-scale',String(Math.max(.05,s)));
   }
   window.addEventListener('resize',resize,{passive:true});
