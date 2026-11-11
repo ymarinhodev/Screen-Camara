@@ -701,10 +701,11 @@ html, body {
 /* Seta GIF da tela de QR Codes: mesma caixa da seta da tela de Notícias (190 x 66).
    Se o GIF tiver margem transparente e parecer menor, aumente --seta-gif-escala (ex.: 2.6). */
 .tv-direction--left {
-    --seta-gif-escala: 2.2;
-    top: 554px;
+    --seta-gif-escala: 3.9  ;
+    top: 570;
     width: 190px;
     height: 66px;
+    margin-left: 40px;
     z-index: 3;
     pointer-events: none;
 }
