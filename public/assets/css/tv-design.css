@@ -30,9 +30,9 @@ html, body {
     overflow: hidden;
 }
 
-/* Navegador na horizontal: a TV vertical 9:16 "deitada" (girada 90° para a esquerda), mesmas proporções. */
-.tv-stage.is-rotated-left {
-    transform: translate(-50%,-50%) rotate(-90deg) scale(var(--tv-scale, 1));
+/* Navegador na horizontal: a TV vertical 9:16 "deitada" (girada 90° para a direita), mesmas proporções. */
+.tv-stage.is-rotated-right {
+    transform: translate(-50%,-50%) rotate(90deg) scale(var(--tv-scale, 1));
 }
 
 .tv-page {

@@ -19,6 +19,7 @@ function tv_logo_partido(array $v): string {
     return '';
 }
 function tv_noticia_foto(array $n): string {
+    if (!empty($n['imagem_id'])) return img_url((int)$n['imagem_id']);
     $url = (string)($n['imagem_url'] ?? '');
     if ($url !== '' && link_valido($url)) return $url;
     return img_url(!empty($n['imagem_id']) ? (int)$n['imagem_id'] : null, '/assets/img/logo.png');
@@ -33,7 +34,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-1">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-2">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
@@ -150,7 +151,7 @@ function tela_fim(array $cfg): void {
 </div>
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/tv-design.js?v=20261111-1"></script>
+<script src="/assets/js/tv-design.js?v=20261111-2"></script>
 <script>
 (function(){
   if (!window.jQuery || !jQuery.fn.owlCarousel) return;

@@ -5,7 +5,7 @@
   function resize(){
     if (!stage) return;
     var landscape=window.innerWidth>window.innerHeight;
-    stage.classList.toggle('is-rotated-left',landscape);
+    stage.classList.toggle('is-rotated-right',landscape);
     var s=landscape
       ? Math.min(window.innerWidth/1280,window.innerHeight/720)
       : Math.min(window.innerWidth/720,window.innerHeight/1280);
