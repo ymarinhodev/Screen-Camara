@@ -34,7 +34,7 @@ function tela_inicio(string $titulo, array $cfg, string $tipo = 'noticias'): voi
     <meta name="robots" content="noindex,nofollow">
     <meta name="theme-color" content="#051e43">
     <title><?= e($titulo) ?></title>
-    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-2">
+    <link rel="stylesheet" href="/assets/css/tv-design.css?v=20261111-3">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
 </head>
@@ -90,7 +90,11 @@ function tela_vereadores(array $vereadores, int $porPagina): void {
 function tela_seta(bool $invertida = false): void {
     ?>
 <div class="tv-direction <?= $invertida ? 'tv-direction--right' : 'tv-direction--left' ?>" aria-hidden="true">
+    <?php if ($invertida): ?>
     <img src="/assets/img/seta-design.svg" alt="">
+    <?php else: ?>
+    <img class="imagem-mexendo" src="https://gifmania.com.br/wp-content/uploads/2025/05/gif_seta_.gif" alt="" onerror="this.onerror=null;this.src='/assets/img/seta-design.svg'">
+    <?php endif; ?>
 </div>
 <?php
 }
